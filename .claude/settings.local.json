@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__visualize__read_me",
+      "mcp__visualize__show_widget",
+      "Bash(npm --version)",
+      "Bash(npx --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"User\"\\); cd \"C:\\\\Users\\\\deepa\\\\Documents\\\\Personal\\\\Vidyut\\\\US College - Profile Building\\\\Tennis Journal App\"; npx create-expo-app@latest TennisJournal --template blank)",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"User\"\\); cd \"C:\\\\Users\\\\deepa\\\\Documents\\\\Personal\\\\Vidyut\\\\US College - Profile Building\\\\Tennis Journal App\\\\TennisJournal\"; Start-Process powershell -ArgumentList '-NoExit', '-Command', '$env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\", \"User\"\\); cd \\\\\"C:\\\\Users\\\\deepa\\\\Documents\\\\Personal\\\\Vidyut\\\\US College - Profile Building\\\\Tennis Journal App\\\\TennisJournal\\\\\"; npx expo start --web')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/health)"
+    ]
+  }
+}

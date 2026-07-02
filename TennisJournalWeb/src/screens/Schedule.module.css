@@ -1,0 +1,152 @@
+.page { min-height: 100vh; display: flex; flex-direction: column; position: relative; }
+
+.header {
+  padding-top: max(14px, env(safe-area-inset-top));
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,15,30,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(245,200,66,0.2);
+}
+.headerInner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 600px; margin: 0 auto; padding: 14px; width: 100%;
+}
+.backBtn { background: none; border: none; color: #f5c842; font-size: 15px; font-weight: 700; cursor: pointer; }
+.title { font-size: 17px; font-weight: 900; letter-spacing: -0.3px;
+  background: linear-gradient(90deg, #f5c842, #ff6b35);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.addBtn {
+  background: linear-gradient(135deg, #f5c842, #ff6b35);
+  border: none; color: #060f1e; font-size: 13px; font-weight: 800;
+  padding: 7px 16px; border-radius: 14px; cursor: pointer;
+}
+
+.timeline {
+  max-width: 600px; margin: 0 auto; width: 100%;
+  padding: 16px 14px 100px;
+}
+
+/* ── Year header ── */
+.yearHeader {
+  font-size: 42px; font-weight: 900; letter-spacing: -2px;
+  margin: 28px 0 4px;
+  background: linear-gradient(135deg, #f5c842 0%, #ff6b35 60%, #e74c3c 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+/* ── Month header ── */
+.monthHeader {
+  display: inline-flex; align-items: center;
+  font-size: 12px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, rgba(61,142,240,0.25), rgba(61,142,240,0.05));
+  border: 1px solid rgba(61,142,240,0.35);
+  color: #a8d4f5; border-radius: 20px;
+  padding: 5px 14px; margin: 18px 0 12px;
+}
+
+/* ── Day row ── */
+.dayRow {
+  display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;
+}
+
+.dayLabel {
+  font-size: 11px; font-weight: 800; color: #4a6080;
+  min-width: 44px; padding-top: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-align: center;
+}
+.todayLabel { color: #f5c842; }
+.pastLabel { opacity: 0.4; }
+
+.weekNum {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+  color: #3d8ef0; opacity: 0.8;
+}
+
+.todayDot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #f5c842;
+  box-shadow: 0 0 8px #f5c842;
+}
+
+.conflictIcon {
+  font-size: 14px;
+  animation: blink 1s ease-in-out infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ── Event cards ── */
+.dayEvents { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+.eventCard {
+  border-radius: 16px; border: 1px solid;
+  padding: 12px 14px; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  position: relative; overflow: hidden;
+}
+.eventCard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: inherit; filter: brightness(2);
+  border-radius: 16px 16px 0 0;
+}
+.eventCard:active { transform: scale(0.97); }
+.pastCard { opacity: 0.45; filter: grayscale(30%); }
+
+.eventLeft { display: flex; gap: 10px; align-items: flex-start; }
+.eventDot {
+  width: 9px; height: 9px; border-radius: 50%;
+  margin-top: 5px; flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.eventTitle {
+  font-size: 13px; font-weight: 700; margin-bottom: 6px;
+  background: linear-gradient(90deg, #f5c842, #ff6b35);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.eventMeta { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag {
+  font-size: 11px; font-weight: 700; color: #a8d4f5;
+  background: rgba(61,142,240,0.12); border: 1px solid rgba(61,142,240,0.2);
+  padding: 3px 9px; border-radius: 8px;
+}
+
+.withdrawWarning {
+  font-size: 12px; font-weight: 800; color: #f39c12;
+  margin-top: 6px; letter-spacing: 0.2px;
+  background: rgba(243,156,18,0.1); border-radius: 6px;
+  padding: 4px 8px; display: inline-block;
+}
+
+/* ── Empty state ── */
+.empty { color: #6b85a8; text-align: center; padding: 40px 0; }
+.emptyState {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 60px 20px; color: #6b85a8; font-size: 15px; text-align: center;
+}
+.emptyBtn {
+  padding: 14px 28px; border-radius: 16px;
+  background: linear-gradient(135deg, #f5c842, #ff6b35);
+  color: #060f1e; font-size: 15px; font-weight: 900; border: none; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(245,200,66,0.3);
+}
+
+/* ── Floating action button ── */
+.fab {
+  position: fixed; bottom: 28px; right: 24px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: linear-gradient(135deg, #f5c842, #ff6b35);
+  color: #060f1e; font-size: 32px; font-weight: 300;
+  border: none; cursor: pointer;
+  box-shadow: 0 6px 24px rgba(245,200,66,0.45);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.fab:active { transform: scale(0.93); box-shadow: 0 2px 12px rgba(245,200,66,0.3); }

@@ -1,0 +1,104 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #060f1e 0%, #0e2240 40%, #0a3060 100%);
+  padding: 20px;
+  padding-top: env(safe-area-inset-top, 20px);
+}
+
+.langBtn {
+  align-self: flex-end;
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(61,142,240,0.5);
+  background: rgba(61,142,240,0.1);
+  color: var(--sky-light);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 40px;
+}
+
+.logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5c842, #e6a800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 58px;
+  box-shadow: 0 8px 40px rgba(245,200,66,0.45), 0 0 0 1px rgba(245,200,66,0.2);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 40%, #a8d4f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--sky-light);
+  text-align: center;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.courtDecor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.12;
+  margin: 12px 0;
+}
+
+.line { width: 220px; height: 1px; background: white; }
+.circle {
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 1px solid white; margin: -45px 0;
+}
+
+.googleBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 30px;
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0A1628;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.1);
+  min-width: 270px;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.googleBtn:active { transform: scale(0.97); }
+
+.gIcon { font-size: 20px; font-weight: 900; color: #4285F4; }
+
+.tagline {
+  font-size: 13px;
+  color: var(--gray);
+  margin-top: 8px;
+}
