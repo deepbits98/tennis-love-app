@@ -76,10 +76,11 @@ async function analyzeMatch(matchData) {
     system: buildAnalysisPrompt(matchData),
   });
 
-  const raw = message.content[0].text.trim()
-    .replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
-
-  return JSON.parse(raw);
+  const text = message.content[0].text;
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  if (start === -1 || end === -1) throw new Error('No JSON found in analysis response');
+  return JSON.parse(text.slice(start, end + 1));
 }
 
 module.exports = { analyzeMatch };
