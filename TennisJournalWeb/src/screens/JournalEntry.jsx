@@ -72,6 +72,42 @@ function formatAnalysisForWhatsApp(a, form) {
   return lines.join('\n');
 }
 
+function FeedbackSection({ sectionKey, title, color, form, onSet }) {
+  const prefix = sectionKey === 'well' ? 'wentWell' : 'didntWork';
+  return (
+    <div className={styles.card}>
+      <div className={styles.feedbackHeader}>
+        <span className={styles.feedbackTitle} style={{ color }}>{title}</span>
+      </div>
+      {PERF_AREAS.map(area => {
+        const fieldKey = prefix + area.key.charAt(0).toUpperCase() + area.key.slice(1);
+        const improvePlaceholder = area.key === 'shots'
+          ? 'e.g. second serve double faults, backhand under pressure...'
+          : area.key === 'mentality'
+          ? 'e.g. got frustrated after errors, lost focus in 3rd set...'
+          : area.key === 'physical'
+          ? 'e.g. tired in final set, slow to recover between points...'
+          : "e.g. too predictable, kept hitting to opponent's strength...";
+        return (
+          <div key={area.key} className={styles.subSection}>
+            <label className={styles.subLabel}>
+              <span className={styles.subEmoji}>{area.emoji}</span>
+              {area.label}
+            </label>
+            <textarea
+              className={styles.subTextarea}
+              value={form[fieldKey]}
+              onChange={e => onSet(fieldKey, e.target.value)}
+              placeholder={sectionKey === 'well' ? area.placeholder : improvePlaceholder}
+              rows={2}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function JournalEntry({ lang, setLang, user, onNavigate, editMatch }) {
   const userId = user.id;
   const isEdit = !!editMatch;
@@ -289,41 +325,6 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  const FeedbackSection = ({ sectionKey, title, color }) => {
-    const prefix = sectionKey === 'well' ? 'wentWell' : 'didntWork';
-    return (
-      <div className={styles.card}>
-        <div className={styles.feedbackHeader}>
-          <span className={styles.feedbackTitle} style={{ color }}>{title}</span>
-        </div>
-        {PERF_AREAS.map(area => {
-          const fieldKey = prefix + area.key.charAt(0).toUpperCase() + area.key.slice(1);
-          const improvePlaceholder = area.key === 'shots'
-            ? 'e.g. second serve double faults, backhand under pressure...'
-            : area.key === 'mentality'
-            ? 'e.g. got frustrated after errors, lost focus in 3rd set...'
-            : area.key === 'physical'
-            ? 'e.g. tired in final set, slow to recover between points...'
-            : 'e.g. too predictable, kept hitting to opponent\'s strength...';
-          return (
-            <div key={area.key} className={styles.subSection}>
-              <label className={styles.subLabel}>
-                <span className={styles.subEmoji}>{area.emoji}</span>
-                {area.label}
-              </label>
-              <textarea
-                className={styles.subTextarea}
-                value={form[fieldKey]}
-                onChange={e => set(fieldKey, e.target.value)}
-                placeholder={sectionKey === 'well' ? area.placeholder : improvePlaceholder}
-                rows={2}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
 
   return (
     <div className={styles.page}>
@@ -536,10 +537,10 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
         </div>
 
         {/* What went well */}
-        <FeedbackSection sectionKey="well" title="✅ WHAT WENT WELL" color="#ccff00" />
+        <FeedbackSection sectionKey="well" title="✅ WHAT WENT WELL" color="#ccff00" form={form} onSet={set} />
 
         {/* What needs work */}
-        <FeedbackSection sectionKey="improve" title="🔧 WHAT NEEDS WORK" color="#ff6b35" />
+        <FeedbackSection sectionKey="improve" title="🔧 WHAT NEEDS WORK" color="#ff6b35" form={form} onSet={set} />
 
         {/* AI Coaching Analysis */}
         <div className={styles.analysisOuter}>

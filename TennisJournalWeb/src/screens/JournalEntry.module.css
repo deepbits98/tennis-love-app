@@ -16,7 +16,7 @@
 
 .headerLeft { display: flex; align-items: center; gap: 10px; }
 .headerIcon { font-size: 22px; }
-.title { font-size: 15px; font-weight: 700; letter-spacing: 2px; font-family: 'Orbitron', monospace; color: #ccff00; }
+.title { font-size: 15px; font-weight: 700; letter-spacing: 2px; font-family: 'Exo 2', monospace; color: #ccff00; }
 
 .langBtn {
   padding: 6px 12px; border-radius: 16px; white-space: nowrap;
@@ -158,7 +158,7 @@
   border: 1.5px solid rgba(204,255,0,0.2);
   background: rgba(7,8,10,0.8); color: rgba(204,255,0,0.4);
   font-size: 14px; font-weight: 700; cursor: pointer;
-  transition: all 0.15s; font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  transition: all 0.15s; font-family: 'Exo 2', monospace; letter-spacing: 1px;
 }
 .outcomeBtn:active { transform: scale(0.97); }
 .winActive {
@@ -232,7 +232,7 @@
   width: 100%; background: rgba(7,8,10,0.8);
   border: 1px solid rgba(204,255,0,0.2); border-radius: 10px;
   padding: 9px 12px; color: #ccff00; font-size: 16px; font-weight: 700;
-  font-family: 'Orbitron', monospace; text-align: center;
+  font-family: 'Exo 2', monospace; text-align: center;
   -moz-appearance: textfield; box-sizing: border-box;
 }
 .statInput::-webkit-outer-spin-button,
@@ -260,14 +260,14 @@
 
 .analysisTriggerTitle {
   font-size: 11px; font-weight: 800; letter-spacing: 2px;
-  color: #a855f7; font-family: 'Orbitron', monospace;
+  color: #a855f7; font-family: 'Exo 2', monospace;
 }
 
 .analysisBetaBadge {
   font-size: 9px; font-weight: 800; letter-spacing: 1px;
   color: #07080a; background: #a855f7;
   border-radius: 6px; padding: 2px 7px;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
 }
 
 .analysisTriggerHint {
@@ -280,7 +280,7 @@
   background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(168,85,247,0.08));
   border: 1.5px solid rgba(168,85,247,0.5);
   color: #a855f7; font-size: 13px; font-weight: 800;
-  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  font-family: 'Exo 2', monospace; letter-spacing: 1px;
   transition: all 0.2s;
   box-shadow: 0 0 20px rgba(168,85,247,0.1);
 }
@@ -294,7 +294,7 @@
 
 .feedbackTitle {
   font-size: 11px; font-weight: 800; letter-spacing: 2px;
-  font-family: 'Orbitron', monospace; text-transform: uppercase;
+  font-family: 'Exo 2', monospace; text-transform: uppercase;
 }
 
 .subSection {
@@ -335,7 +335,7 @@
   border: none; cursor: pointer; margin-top: 6px;
   box-shadow: 0 0 24px rgba(204,255,0,0.3);
   transition: transform 0.15s, box-shadow 0.15s;
-  letter-spacing: 2px; font-family: 'Orbitron', monospace;
+  letter-spacing: 2px; font-family: 'Exo 2', monospace;
 }
 .saveBtn:active { transform: scale(0.98); }
 .saveBtn:disabled { opacity: 0.6; cursor: not-allowed; }

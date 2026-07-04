@@ -15,7 +15,7 @@
 .sectionTitle {
   font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
   color: rgba(168,85,247,0.7); text-transform: uppercase;
-  font-family: 'Orbitron', monospace; margin-bottom: 2px;
+  font-family: 'Exo 2', monospace; margin-bottom: 2px;
 }
 
 .summary {
@@ -38,7 +38,7 @@
 
 .priorityArea {
   font-size: 12px; font-weight: 800; color: #ff6b35;
-  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  font-family: 'Exo 2', monospace; letter-spacing: 1px;
 }
 
 .priorityIssue {
@@ -62,7 +62,7 @@
 
 .drillName {
   font-size: 12px; font-weight: 800; color: #ccff00;
-  font-family: 'Orbitron', monospace; letter-spacing: 0.5px;
+  font-family: 'Exo 2', monospace; letter-spacing: 0.5px;
 }
 
 .drillMeta {
@@ -87,7 +87,7 @@
 .weekFocusLabel {
   font-size: 10px; font-weight: 800; letter-spacing: 2px;
   color: rgba(168,85,247,0.7); text-transform: uppercase;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', monospace;
 }
 
 .weekFocusText {

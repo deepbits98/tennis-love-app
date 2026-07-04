@@ -26,6 +26,8 @@ export default function VoiceField({ label, value, onChange, lang, onFieldsExtra
   const [step, setStep] = useState(0);
   const [errorMsg, setErrorMsg] = useState('');
   const [lastAudio, setLastAudio] = useState(null);
+  const [showShortHint, setShowShortHint] = useState(false);
+  const secondsRef = useRef(0);
 
   const [waveform, setWaveform] = useState(Array(24).fill(3));
 
@@ -38,6 +40,7 @@ export default function VoiceField({ label, value, onChange, lang, onFieldsExtra
   const audioCtxRef = useRef(null);
   const animFrameRef = useRef(null);
   useEffect(() => { valueRef.current = value; }, [value]);
+  useEffect(() => { secondsRef.current = seconds; }, [seconds]);
   useEffect(() => () => clearInterval(timerRef.current), []);
 
   const isRecordingRef = useRef(false);
@@ -114,6 +117,7 @@ export default function VoiceField({ label, value, onChange, lang, onFieldsExtra
 
   const startRecording = async () => {
     setErrorMsg('');
+    setShowShortHint(false);
     onLiveText?.('');
     try {
       if (isBanner && isMobile) startSpeechRecognition();
@@ -150,6 +154,7 @@ export default function VoiceField({ label, value, onChange, lang, onFieldsExtra
   };
 
   const handleStop = async () => {
+    if (secondsRef.current < 20) setShowShortHint(true);
     onLiveText?.('');
     onStateChange?.('processing');
     setState('processing');
@@ -291,6 +296,13 @@ export default function VoiceField({ label, value, onChange, lang, onFieldsExtra
         )}
         {state === 'done' && (
           <div className={styles.doneBox}><span>✅</span><span>{lang === 'hi' ? 'हो गया! फ़ील्ड भर गए' : 'Done! Fields filled in'}</span></div>
+        )}
+        {showShortHint && (state === 'idle' || state === 'done') && (
+          <p className={styles.shortHint}>
+            💡 {lang === 'hi'
+              ? 'थोड़ा और बोलें — 20 सेकंड से ज़्यादा बोलने से बेहतर जानकारी मिलती है'
+              : 'Tip: Try speaking for at least 20 seconds — more detail leads to better analysis'}
+          </p>
         )}
         {state === 'error' && (
           <div className={styles.errorBox}>

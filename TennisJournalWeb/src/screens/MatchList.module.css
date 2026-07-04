@@ -17,7 +17,7 @@
   font-size: 15px; font-weight: 600; cursor: pointer; padding: 4px 0;
   font-family: 'Share Tech Mono', monospace;
 }
-.title { font-size: 15px; font-weight: 700; letter-spacing: 2px; font-family: 'Orbitron', monospace; color: #ccff00; }
+.title { font-size: 15px; font-weight: 700; letter-spacing: 2px; font-family: 'Exo 2', monospace; color: #ccff00; }
 .newBtn {
   background: rgba(204,255,0,0.08); border: 1px solid rgba(204,255,0,0.3);
   color: #ccff00; font-size: 12px; font-weight: 700;
@@ -38,7 +38,7 @@
   padding: 14px 28px; border-radius: 16px;
   background: #ccff00;
   color: #07080a; font-size: 14px; font-weight: 800; border: none; cursor: pointer;
-  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  font-family: 'Exo 2', monospace; letter-spacing: 1px;
   box-shadow: 0 0 20px rgba(204,255,0,0.3);
 }
 
@@ -67,7 +67,7 @@
 .win { background: rgba(204,255,0,0.1); border: 1.5px solid #ccff00; color: #ccff00; }
 .loss { background: rgba(231,76,60,0.15); border: 1.5px solid #e74c3c; color: #e74c3c; }
 
-.opponent { font-size: 17px; font-weight: 700; color: white; font-family: 'Orbitron', monospace; font-size: 14px; }
+.opponent { font-size: 17px; font-weight: 700; color: white; font-family: 'Exo 2', monospace; font-size: 14px; }
 .score { font-size: 12px; color: rgba(204,255,0,0.6); font-weight: 600; font-family: 'Share Tech Mono', monospace; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }

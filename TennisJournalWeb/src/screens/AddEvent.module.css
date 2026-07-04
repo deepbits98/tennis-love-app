@@ -10,11 +10,11 @@
   max-width: 600px; margin: 0 auto; width: 100%;
 }
 .cancelBtn { background: none; border: none; color: rgba(204,255,0,0.4); font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Share Tech Mono', monospace; }
-.title { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #ccff00; font-family: 'Orbitron', monospace; }
+.title { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #ccff00; font-family: 'Exo 2', monospace; }
 .saveBtn {
   background: #ccff00; border: none; color: #07080a; font-size: 13px; font-weight: 700;
   padding: 8px 18px; border-radius: 14px; cursor: pointer;
-  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  font-family: 'Exo 2', monospace; letter-spacing: 1px;
 }
 .saveBtn:disabled { opacity: 0.4; }
 
