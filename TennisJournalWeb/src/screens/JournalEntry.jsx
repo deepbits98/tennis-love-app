@@ -212,6 +212,9 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
     if (fields.session_type)     set('sessionType', fields.session_type);
     if (fields.tournament_level) set('tournamentLevel', fields.tournament_level);
     if (fields.mood_hint)        setMoodHint(fields.mood_hint);
+    if (fields.first_serve_pct != null && fields.first_serve_pct !== '') set('firstServePct', String(fields.first_serve_pct));
+    if (fields.double_faults    != null && fields.double_faults    !== '') set('doubleFaults',  String(fields.double_faults));
+    if (fields.unforced_errors  != null && fields.unforced_errors  !== '') set('unforcedErrors', String(fields.unforced_errors));
 
     if (fields.shots_well)        setForm(f => ({ ...f, wentWellShots:      f.wentWellShots      ? f.wentWellShots      + '; ' + fields.shots_well        : fields.shots_well }));
     if (fields.mentality_well)    setForm(f => ({ ...f, wentWellMentality:  f.wentWellMentality  ? f.wentWellMentality  + '; ' + fields.mentality_well    : fields.mentality_well }));
