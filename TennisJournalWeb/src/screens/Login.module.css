@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(160deg, #060f1e 0%, #0e2240 40%, #0a3060 100%);
+  background: #07080a;
   padding: 20px;
   padding-top: env(safe-area-inset-top, 20px);
 }
@@ -11,13 +11,13 @@
   align-self: flex-end;
   padding: 7px 18px;
   border-radius: 20px;
-  border: 1px solid rgba(61,142,240,0.5);
-  background: rgba(61,142,240,0.1);
-  color: var(--sky-light);
+  border: 1px solid rgba(204,255,0,0.3);
+  background: rgba(204,255,0,0.08);
+  color: #ccff00;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  backdrop-filter: blur(10px);
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .center {
@@ -34,71 +34,75 @@
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f5c842, #e6a800);
+  background: #ccff00;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 58px;
-  box-shadow: 0 8px 40px rgba(245,200,66,0.45), 0 0 0 1px rgba(245,200,66,0.2);
+  box-shadow: 0 0 40px rgba(204,255,0,0.4), 0 0 80px rgba(204,255,0,0.15);
   margin-bottom: 8px;
 }
 
 .title {
   font-size: 38px;
   font-weight: 900;
-  letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #fff 40%, #a8d4f5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  letter-spacing: 2px;
+  color: #ccff00;
+  font-family: 'Orbitron', monospace;
+  text-shadow: 0 0 20px rgba(204,255,0,0.4);
 }
 
 .subtitle {
-  font-size: 15px;
-  color: var(--sky-light);
+  font-size: 12px;
+  color: rgba(204,255,0,0.5);
   text-align: center;
-  font-weight: 400;
-  opacity: 0.85;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .courtDecor {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0.12;
+  opacity: 0.08;
   margin: 12px 0;
 }
 
-.line { width: 220px; height: 1px; background: white; }
+.line { width: 220px; height: 1px; background: #ccff00; }
 .circle {
   width: 90px; height: 90px; border-radius: 50%;
-  border: 1px solid white; margin: -45px 0;
+  border: 1px solid #ccff00; margin: -45px 0;
 }
 
 .googleBtn {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: white;
+  background: rgba(204,255,0,0.08);
   border-radius: 30px;
   padding: 16px 36px;
-  border: none;
+  border: 1px solid rgba(204,255,0,0.3);
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  color: #0A1628;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.1);
+  color: #ccff00;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 1px;
   min-width: 270px;
   justify-content: center;
   transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 20px rgba(204,255,0,0.1);
 }
 
 .googleBtn:active { transform: scale(0.97); }
 
-.gIcon { font-size: 20px; font-weight: 900; color: #4285F4; }
+.gIcon { font-size: 20px; font-weight: 900; color: #ccff00; }
 
 .tagline {
-  font-size: 13px;
-  color: var(--gray);
+  font-size: 12px;
+  color: rgba(204,255,0,0.3);
   margin-top: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 1px;
 }

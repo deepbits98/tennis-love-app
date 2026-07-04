@@ -3,8 +3,8 @@
 .header {
   padding-top: max(14px, env(safe-area-inset-top));
   position: sticky; top: 0; z-index: 100;
-  background: rgba(6,15,30,0.92); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(60,100,160,0.3);
+  background: rgba(7,8,10,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(204,255,0,0.15);
 }
 
 .headerInner {
@@ -13,63 +13,71 @@
 }
 
 .backBtn {
-  background: none; border: none; color: #3d8ef0;
+  background: none; border: none; color: #ccff00;
   font-size: 15px; font-weight: 600; cursor: pointer; padding: 4px 0;
+  font-family: 'Share Tech Mono', monospace;
 }
-.title { font-size: 17px; font-weight: 800; }
+.title { font-size: 15px; font-weight: 700; letter-spacing: 2px; font-family: 'Orbitron', monospace; color: #ccff00; }
 .newBtn {
-  background: rgba(61,142,240,0.15); border: 1px solid rgba(61,142,240,0.4);
-  color: #3d8ef0; font-size: 13px; font-weight: 700;
+  background: rgba(204,255,0,0.08); border: 1px solid rgba(204,255,0,0.3);
+  color: #ccff00; font-size: 12px; font-weight: 700;
   padding: 6px 14px; border-radius: 14px; cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .list { padding: 14px 14px 40px; display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; width: 100%; }
 
-.empty { color: #6b85a8; text-align: center; padding: 40px 0; }
+.empty { color: rgba(204,255,0,0.4); text-align: center; padding: 40px 0; font-family: 'Share Tech Mono', monospace; }
 
 .emptyState {
   display: flex; flex-direction: column; align-items: center; gap: 14px;
-  padding: 60px 20px; color: #6b85a8; font-size: 15px;
+  padding: 60px 20px; color: rgba(204,255,0,0.4); font-size: 15px;
+  font-family: 'Share Tech Mono', monospace;
 }
 .startBtn {
   padding: 14px 28px; border-radius: 16px;
-  background: linear-gradient(135deg, #f5c842, #e6a800);
-  color: #060f1e; font-size: 15px; font-weight: 800; border: none; cursor: pointer;
+  background: #ccff00;
+  color: #07080a; font-size: 14px; font-weight: 800; border: none; cursor: pointer;
+  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  box-shadow: 0 0 20px rgba(204,255,0,0.3);
 }
 
 .card {
-  background: rgba(14,34,64,0.7); border: 1px solid rgba(60,100,160,0.35);
+  background: rgba(13,15,10,0.8); border: 1px solid rgba(204,255,0,0.15);
   border-radius: 20px; padding: 16px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   display: flex; flex-direction: column; gap: 8px;
+  position: relative; overflow: hidden; cursor: pointer;
 }
+.card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ccff00; }
 
 .cardTop { display: flex; justify-content: space-between; align-items: flex-start; }
 .dateWrap { display: flex; flex-direction: column; gap: 3px; }
-.date { font-size: 13px; font-weight: 700; color: #6b9fd4; }
-.surface { font-size: 11px; color: #6b85a8; text-transform: capitalize; }
+.date { font-size: 12px; font-weight: 700; color: rgba(204,255,0,0.7); font-family: 'Share Tech Mono', monospace; }
+.surface { font-size: 11px; color: rgba(204,255,0,0.4); text-transform: capitalize; font-family: 'Share Tech Mono', monospace; }
 
 .badges { display: flex; gap: 8px; align-items: center; }
 .mood { font-size: 22px; }
 .outcome {
   width: 28px; height: 28px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 800;
+  font-size: 12px; font-weight: 800; font-family: 'Share Tech Mono', monospace;
 }
-.win { background: rgba(46,204,113,0.15); border: 1.5px solid #2ecc71; color: #2ecc71; }
+.win { background: rgba(204,255,0,0.1); border: 1.5px solid #ccff00; color: #ccff00; }
 .loss { background: rgba(231,76,60,0.15); border: 1.5px solid #e74c3c; color: #e74c3c; }
 
-.opponent { font-size: 17px; font-weight: 700; color: white; }
-.score { font-size: 13px; color: #a8d4f5; font-weight: 600; }
+.opponent { font-size: 17px; font-weight: 700; color: white; font-family: 'Orbitron', monospace; font-size: 14px; }
+.score { font-size: 12px; color: rgba(204,255,0,0.6); font-weight: 600; font-family: 'Share Tech Mono', monospace; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag {
-  font-size: 11px; font-weight: 600; color: #6b85a8;
-  background: rgba(60,100,160,0.15); border: 1px solid rgba(60,100,160,0.3);
+  font-size: 11px; font-weight: 600; color: rgba(204,255,0,0.5);
+  background: rgba(204,255,0,0.06); border: 1px solid rgba(204,255,0,0.15);
   padding: 4px 10px; border-radius: 10px; text-transform: capitalize;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .note { display: flex; gap: 8px; align-items: flex-start; }
 .noteIcon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-.noteText { font-size: 13px; color: #8fa3c0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.noteText { font-size: 13px; color: rgba(204,255,0,0.35); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; font-family: 'Share Tech Mono', monospace; }

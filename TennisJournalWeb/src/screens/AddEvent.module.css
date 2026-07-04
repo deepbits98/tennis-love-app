@@ -5,85 +5,81 @@
   padding: 14px;
   padding-top: max(14px, env(safe-area-inset-top));
   position: sticky; top: 0; z-index: 100;
-  background: rgba(6,15,30,0.92); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(60,100,160,0.3);
+  background: rgba(7,8,10,0.95); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(204,255,0,0.15);
   max-width: 600px; margin: 0 auto; width: 100%;
 }
-.cancelBtn { background: none; border: none; color: #6b85a8; font-size: 14px; font-weight: 600; cursor: pointer; }
-.title { font-size: 17px; font-weight: 800; }
+.cancelBtn { background: none; border: none; color: rgba(204,255,0,0.4); font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Share Tech Mono', monospace; }
+.title { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #ccff00; font-family: 'Orbitron', monospace; }
 .saveBtn {
-  background: linear-gradient(135deg, #3d8ef0, #1a5cbc);
-  border: none; color: white; font-size: 14px; font-weight: 700;
+  background: #ccff00; border: none; color: #07080a; font-size: 13px; font-weight: 700;
   padding: 8px 18px; border-radius: 14px; cursor: pointer;
+  font-family: 'Orbitron', monospace; letter-spacing: 1px;
 }
-.saveBtn:disabled { opacity: 0.5; }
+.saveBtn:disabled { opacity: 0.4; }
 
 .form {
-  padding: 14px 14px 20px;
-  display: flex; flex-direction: column; gap: 10px;
+  padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 10px;
   max-width: 600px; margin: 0 auto; width: 100%;
 }
 
 .card {
-  background: rgba(14,34,64,0.7); border: 1px solid rgba(60,100,160,0.35);
-  border-radius: 18px; padding: 14px 16px;
-  backdrop-filter: blur(20px);
+  background: rgba(13,15,10,0.8); border: 1px solid rgba(204,255,0,0.15);
+  border-radius: 18px; padding: 14px 16px; backdrop-filter: blur(20px);
   display: flex; flex-direction: column; gap: 10px;
 }
 
-.label { font-size: 11px; font-weight: 700; color: #6b85a8; text-transform: uppercase; letter-spacing: 1px; }
-.hint { font-size: 12px; color: #6b85a8; margin: -4px 0; }
+.label { font-size: 11px; font-weight: 700; color: rgba(204,255,0,0.5); text-transform: uppercase; letter-spacing: 2px; font-family: 'Share Tech Mono', monospace; }
+.hint { font-size: 12px; color: rgba(204,255,0,0.3); margin: -4px 0; font-family: 'Share Tech Mono', monospace; }
 
 .typeGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .typeBtn {
-  padding: 10px 8px; border-radius: 12px; font-size: 13px; font-weight: 600;
-  background: rgba(60,100,160,0.1); border: 1px solid rgba(60,100,160,0.25);
-  color: #6b85a8; cursor: pointer; text-align: left; transition: all 0.15s;
+  padding: 10px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;
+  background: rgba(204,255,0,0.04); border: 1px solid rgba(204,255,0,0.15);
+  color: rgba(204,255,0,0.4); cursor: pointer; text-align: left; transition: all 0.15s;
+  font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
 }
-.typeBtnActive {
-  background: rgba(61,142,240,0.2); border-color: rgba(61,142,240,0.6);
-  color: white;
-}
+.typeBtnActive { background: rgba(204,255,0,0.1); border-color: rgba(204,255,0,0.5); color: #ccff00; }
 
 .input {
-  width: 100%; background: rgba(6,15,30,0.6); border: 1px solid rgba(60,100,160,0.3);
-  border-radius: 10px; padding: 10px 12px; color: white; font-size: 14px;
+  width: 100%; background: rgba(7,8,10,0.8); border: 1px solid rgba(204,255,0,0.2);
+  border-radius: 10px; padding: 10px 12px; color: #ccff00; font-size: 14px;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .dateRow { display: flex; align-items: center; gap: 10px; }
 .dateField { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-.dateSubLabel { font-size: 11px; color: #6b85a8; font-weight: 600; }
-.dateSep { color: #6b85a8; font-size: 16px; margin-top: 18px; }
+.dateSubLabel { font-size: 11px; color: rgba(204,255,0,0.4); font-weight: 600; font-family: 'Share Tech Mono', monospace; }
+.dateSep { color: rgba(204,255,0,0.3); font-size: 16px; margin-top: 18px; }
 .dateDisplay {
   padding: 10px 12px; border-radius: 10px;
-  background: rgba(6,15,30,0.6); border: 1px solid rgba(60,100,160,0.3);
-  font-size: 14px; font-weight: 600; color: white; cursor: pointer;
+  background: rgba(7,8,10,0.8); border: 1px solid rgba(204,255,0,0.2);
+  font-size: 13px; font-weight: 600; color: #ccff00; cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
 }
 .hiddenDate { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
-.clearDate { background: none; border: none; color: #e74c3c; font-size: 12px; font-weight: 600; cursor: pointer; align-self: flex-start; }
+.clearDate { background: none; border: none; color: #e74c3c; font-size: 12px; font-weight: 600; cursor: pointer; align-self: flex-start; font-family: 'Share Tech Mono', monospace; }
 
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill {
-  padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
-  background: rgba(60,100,160,0.1); border: 1px solid rgba(60,100,160,0.25);
-  color: #6b85a8; cursor: pointer;
+  padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(204,255,0,0.04); border: 1px solid rgba(204,255,0,0.15);
+  color: rgba(204,255,0,0.4); cursor: pointer; font-family: 'Share Tech Mono', monospace;
 }
-.pillActive {
-  background: rgba(61,142,240,0.2); border-color: rgba(61,142,240,0.6);
-  color: white;
-}
+.pillActive { background: rgba(204,255,0,0.1); border-color: rgba(204,255,0,0.5); color: #ccff00; }
 
 .row2 { display: flex; gap: 10px; }
 .row2 > * { flex: 1; }
 
 .textarea {
-  width: 100%; background: rgba(6,15,30,0.6); border: 1px solid rgba(60,100,160,0.3);
-  border-radius: 10px; padding: 10px 12px; color: white; font-size: 14px;
-  resize: vertical; font-family: inherit;
+  width: 100%; background: rgba(7,8,10,0.8); border: 1px solid rgba(204,255,0,0.2);
+  border-radius: 10px; padding: 10px 12px; color: #ccff00; font-size: 14px;
+  resize: vertical; font-family: 'Share Tech Mono', monospace;
 }
 
 .deleteBtn {
   padding: 14px; border-radius: 14px;
-  background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3);
-  color: #e74c3c; font-size: 14px; font-weight: 600; cursor: pointer;
+  background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.25);
+  color: #e74c3c; font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
 }
