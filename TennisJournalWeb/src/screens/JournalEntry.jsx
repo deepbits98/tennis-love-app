@@ -133,6 +133,12 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
   useEffect(() => {
+    if (editMatch?.coaching_report) {
+      try { setAnalysis(JSON.parse(editMatch.coaching_report)); } catch {}
+    }
+  }, []);
+
+  useEffect(() => {
     supabase.from('opponents').select('first_name,last_name')
       .eq('user_id', userId)
       .then(({ data }) => data && setOpponents(data.map(o => `${o.first_name} ${o.last_name || ''}`.trim())));
@@ -217,6 +223,7 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
           shots: form.didntWorkShots, mentality: form.didntWorkMentality,
           physical: form.didntWorkPhysical, tactics: form.didntWorkTactics,
         }),
+        coaching_report: analysis ? JSON.stringify(analysis) : null,
       };
       const { error } = isEdit
         ? await supabase.from('matches').update(payload).eq('id', editMatch.id)
