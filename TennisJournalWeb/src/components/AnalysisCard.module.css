@@ -1,0 +1,108 @@
+.card {
+  display: flex; flex-direction: column; gap: 0;
+  background: rgba(10, 6, 20, 0.95);
+  border: 1.5px solid rgba(168,85,247,0.35);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 0 32px rgba(168,85,247,0.12);
+}
+
+.section {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(168,85,247,0.1);
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
+  color: rgba(168,85,247,0.7); text-transform: uppercase;
+  font-family: 'Orbitron', monospace; margin-bottom: 2px;
+}
+
+.summary {
+  font-size: 13px; line-height: 1.65; color: rgba(204,255,0,0.85);
+  font-family: 'Share Tech Mono', monospace; margin: 0;
+}
+
+.bullet {
+  font-size: 13px; line-height: 1.55; color: rgba(204,255,0,0.7);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Priority fixes */
+.priorityItem {
+  background: rgba(255,107,53,0.06);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-radius: 12px; padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.priorityArea {
+  font-size: 12px; font-weight: 800; color: #ff6b35;
+  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+}
+
+.priorityIssue {
+  font-size: 12px; color: rgba(204,255,0,0.5);
+  font-family: 'Share Tech Mono', monospace; line-height: 1.4;
+}
+
+.priorityFix {
+  font-size: 13px; color: rgba(204,255,0,0.85);
+  font-family: 'Share Tech Mono', monospace; line-height: 1.4;
+  padding-top: 2px;
+}
+
+/* Drills & Fitness */
+.drillItem {
+  background: rgba(204,255,0,0.03);
+  border: 1px solid rgba(204,255,0,0.1);
+  border-radius: 12px; padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.drillName {
+  font-size: 12px; font-weight: 800; color: #ccff00;
+  font-family: 'Orbitron', monospace; letter-spacing: 0.5px;
+}
+
+.drillMeta {
+  font-size: 11px; color: rgba(168,85,247,0.7);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.drillDesc {
+  font-size: 12px; color: rgba(204,255,0,0.6); line-height: 1.55;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Week focus */
+.weekFocusBox {
+  margin: 4px 16px 0;
+  background: rgba(168,85,247,0.08);
+  border: 1.5px solid rgba(168,85,247,0.3);
+  border-radius: 14px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+.weekFocusLabel {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  color: rgba(168,85,247,0.7); text-transform: uppercase;
+  font-family: 'Orbitron', monospace;
+}
+
+.weekFocusText {
+  font-size: 14px; font-weight: 600; color: #a855f7;
+  font-family: 'Share Tech Mono', monospace; line-height: 1.5;
+}
+
+/* Share button */
+.shareBtn {
+  margin: 14px 16px 16px;
+  padding: 13px; border-radius: 14px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white; font-size: 13px; font-weight: 700;
+  font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.25);
+  transition: transform 0.15s;
+}
+.shareBtn:active { transform: scale(0.97); }

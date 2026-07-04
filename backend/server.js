@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { transcribeAudio } = require('./transcription');
 const { extractFields } = require('./extraction');
+const { analyzeMatch } = require('./analysis');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -103,6 +104,17 @@ app.post('/transcribe', (req, res, next) => {
     try { fs.unlinkSync(webmPath); } catch {}
     try { fs.unlinkSync(filePath); } catch {}
     return res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /analyze — generate AI coaching analysis from match data
+app.post('/analyze', async (req, res) => {
+  try {
+    const result = await analyzeMatch(req.body);
+    res.json(result);
+  } catch (err) {
+    console.error('Analysis error:', err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 

@@ -204,6 +204,90 @@
 }
 .suggestItem:active { background: rgba(204,255,0,0.08); }
 
+/* ── Match Stats ── */
+.statsHint {
+  font-size: 11px; color: rgba(204,255,0,0.3); margin: -4px 0 4px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.statsGrid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+}
+
+.statField {
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+.statLabel {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  color: rgba(204,255,0,0.4); text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.statInputWrap {
+  position: relative; display: flex; align-items: center;
+}
+
+.statInput {
+  width: 100%; background: rgba(7,8,10,0.8);
+  border: 1px solid rgba(204,255,0,0.2); border-radius: 10px;
+  padding: 9px 12px; color: #ccff00; font-size: 16px; font-weight: 700;
+  font-family: 'Orbitron', monospace; text-align: center;
+  -moz-appearance: textfield; box-sizing: border-box;
+}
+.statInput::-webkit-outer-spin-button,
+.statInput::-webkit-inner-spin-button { -webkit-appearance: none; }
+.statInput::placeholder { color: rgba(204,255,0,0.2); font-size: 13px; font-family: 'Share Tech Mono', monospace; }
+.statInput:focus { outline: none; border-color: rgba(204,255,0,0.5); }
+
+.statUnit {
+  position: absolute; right: 10px;
+  font-size: 11px; color: rgba(204,255,0,0.35); font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── AI Analysis trigger ── */
+.analysisOuter {
+  background: rgba(10,6,20,0.9);
+  border: 1.5px solid rgba(168,85,247,0.3);
+  border-radius: 20px; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: 0 0 28px rgba(168,85,247,0.08);
+}
+
+.analysisTriggerHeader {
+  display: flex; align-items: center; gap: 10px;
+}
+
+.analysisTriggerTitle {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  color: #a855f7; font-family: 'Orbitron', monospace;
+}
+
+.analysisBetaBadge {
+  font-size: 9px; font-weight: 800; letter-spacing: 1px;
+  color: #07080a; background: #a855f7;
+  border-radius: 6px; padding: 2px 7px;
+  font-family: 'Orbitron', monospace;
+}
+
+.analysisTriggerHint {
+  font-size: 12px; color: rgba(168,85,247,0.5); line-height: 1.55;
+  font-family: 'Share Tech Mono', monospace; margin: 0;
+}
+
+.generateBtn {
+  width: 100%; padding: 14px; border-radius: 14px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(168,85,247,0.08));
+  border: 1.5px solid rgba(168,85,247,0.5);
+  color: #a855f7; font-size: 13px; font-weight: 800;
+  font-family: 'Orbitron', monospace; letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(168,85,247,0.1);
+}
+.generateBtn:hover { background: rgba(168,85,247,0.15); box-shadow: 0 0 28px rgba(168,85,247,0.2); }
+.generateBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Feedback sub-sections ── */
 .feedbackHeader {
   margin-bottom: 14px;
 }
