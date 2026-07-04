@@ -17,6 +17,34 @@ function formatDate(iso) {
   return `${d}-${MONTHS[parseInt(m)-1]}-${y}`;
 }
 
+const PERF_AREAS = [
+  { key: 'shots',     emoji: '🎾', label: 'SHOTS',       placeholder: 'e.g. forehand cross-court, first serve, backhand slice...' },
+  { key: 'mentality', emoji: '🧠', label: 'MENTALITY',   placeholder: 'e.g. stayed calm in tiebreak, good decision-making...' },
+  { key: 'physical',  emoji: '💪', label: 'PHYSICALITY', placeholder: 'e.g. great movement, strong stamina, quick feet...' },
+  { key: 'tactics',   emoji: '🎯', label: 'TACTICS',     placeholder: 'e.g. used angles well, good net approach, varied pace...' },
+];
+
+function parseSubfields(text) {
+  const r = { shots: '', mentality: '', physical: '', tactics: '' };
+  if (!text) return r;
+  r.shots     = (text.match(/Shots:\s*([^\n]+)/)       || [])[1]?.trim() || '';
+  r.mentality = (text.match(/Mentality:\s*([^\n]+)/)   || [])[1]?.trim() || '';
+  r.physical  = (text.match(/Physicality:\s*([^\n]+)/) || [])[1]?.trim() || '';
+  r.tactics   = (text.match(/Tactics:\s*([^\n]+)/)     || [])[1]?.trim() || '';
+  // Legacy unstructured text: fall into shots field
+  if (!r.shots && !r.mentality && !r.physical && !r.tactics) r.shots = text;
+  return r;
+}
+
+function combineSubfields(subs) {
+  const parts = [];
+  if (subs.shots?.trim())     parts.push(`🎾 Shots: ${subs.shots.trim()}`);
+  if (subs.mentality?.trim()) parts.push(`🧠 Mentality: ${subs.mentality.trim()}`);
+  if (subs.physical?.trim())  parts.push(`💪 Physicality: ${subs.physical.trim()}`);
+  if (subs.tactics?.trim())   parts.push(`🎯 Tactics: ${subs.tactics.trim()}`);
+  return parts.join('\n');
+}
+
 export default function JournalEntry({ lang, setLang, user, onNavigate, editMatch }) {
   const userId = user.id;
   const isEdit = !!editMatch;
@@ -27,9 +55,13 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
       date: new Date().toISOString().split('T')[0],
       city: '', venue: '', sessionType: 'practice', tournamentLevel: '',
       surface: '', opponentFirst: '', opponentLast: '',
-      outcome: '', score: '', mood: 75, wentWell: '', didntWork: '',
+      outcome: '', score: '', mood: 75,
+      wentWellShots: '', wentWellMentality: '', wentWellPhysical: '', wentWellTactics: '',
+      didntWorkShots: '', didntWorkMentality: '', didntWorkPhysical: '', didntWorkTactics: '',
     };
     const [first, ...rest] = (editMatch.opponent_name_raw || '').split(' ');
+    const wellSubs = parseSubfields(editMatch.went_well || '');
+    const improveSubs = parseSubfields(editMatch.didnt_work || '');
     return {
       date: editMatch.match_date || new Date().toISOString().split('T')[0],
       city: editMatch.city || '', venue: editMatch.venue || '',
@@ -39,7 +71,10 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
       opponentFirst: first || '', opponentLast: rest.join(' '),
       outcome: editMatch.outcome || '', score: editMatch.score || '',
       mood: editMatch.mood_score || 75,
-      wentWell: editMatch.went_well || '', didntWork: editMatch.didnt_work || '',
+      wentWellShots: wellSubs.shots, wentWellMentality: wellSubs.mentality,
+      wentWellPhysical: wellSubs.physical, wentWellTactics: wellSubs.tactics,
+      didntWorkShots: improveSubs.shots, didntWorkMentality: improveSubs.mentality,
+      didntWorkPhysical: improveSubs.physical, didntWorkTactics: improveSubs.tactics,
     };
   }
 
@@ -49,7 +84,7 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
   const [moodHint, setMoodHint] = useState('');
   const [revealed, setRevealed] = useState(isEdit);
   const [liveTranscript, setLiveTranscript] = useState('');
-  const [voiceState, setVoiceState] = useState('idle'); // idle | recording | processing
+  const [voiceState, setVoiceState] = useState('idle');
   const [opponents, setOpponents] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [saving, setSaving] = useState(false);
@@ -91,19 +126,27 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
   const fillFromVoice = (fields) => {
     setRevealed(true);
     setVoiceState('idle');
-    if (fields.match_date)     set('date', fields.match_date);
-    if (fields.opponent_first) set('opponentFirst', fields.opponent_first);
-    if (fields.opponent_last)  set('opponentLast', fields.opponent_last);
-    if (fields.outcome)        set('outcome', fields.outcome);
-    if (fields.score)          set('score', fields.score);
-    if (fields.city)           set('city', fields.city);
-    if (fields.venue)          set('venue', fields.venue);
-    if (fields.surface)        set('surface', fields.surface);
-    if (fields.session_type)   set('sessionType', fields.session_type);
+    if (fields.match_date)       set('date', fields.match_date);
+    if (fields.opponent_first)   set('opponentFirst', fields.opponent_first);
+    if (fields.opponent_last)    set('opponentLast', fields.opponent_last);
+    if (fields.outcome)          set('outcome', fields.outcome);
+    if (fields.score)            set('score', fields.score);
+    if (fields.city)             set('city', fields.city);
+    if (fields.venue)            set('venue', fields.venue);
+    if (fields.surface)          set('surface', fields.surface);
+    if (fields.session_type)     set('sessionType', fields.session_type);
     if (fields.tournament_level) set('tournamentLevel', fields.tournament_level);
-    if (fields.went_well)      setForm(f => ({ ...f, wentWell: f.wentWell ? f.wentWell + '\n' + fields.went_well : fields.went_well }));
-    if (fields.didnt_work)     setForm(f => ({ ...f, didntWork: f.didntWork ? f.didntWork + '\n' + fields.didnt_work : fields.didnt_work }));
-    if (fields.mood_hint)      setMoodHint(fields.mood_hint);
+    if (fields.mood_hint)        setMoodHint(fields.mood_hint);
+
+    // Sub-category performance fields
+    if (fields.shots_well)        setForm(f => ({ ...f, wentWellShots:     f.wentWellShots     ? f.wentWellShots     + '; ' + fields.shots_well        : fields.shots_well }));
+    if (fields.mentality_well)    setForm(f => ({ ...f, wentWellMentality: f.wentWellMentality ? f.wentWellMentality + '; ' + fields.mentality_well    : fields.mentality_well }));
+    if (fields.physical_well)     setForm(f => ({ ...f, wentWellPhysical:  f.wentWellPhysical  ? f.wentWellPhysical  + '; ' + fields.physical_well     : fields.physical_well }));
+    if (fields.tactics_well)      setForm(f => ({ ...f, wentWellTactics:   f.wentWellTactics   ? f.wentWellTactics   + '; ' + fields.tactics_well      : fields.tactics_well }));
+    if (fields.shots_improve)     setForm(f => ({ ...f, didntWorkShots:    f.didntWorkShots    ? f.didntWorkShots    + '; ' + fields.shots_improve     : fields.shots_improve }));
+    if (fields.mentality_improve) setForm(f => ({ ...f, didntWorkMentality:f.didntWorkMentality? f.didntWorkMentality+ '; ' + fields.mentality_improve : fields.mentality_improve }));
+    if (fields.physical_improve)  setForm(f => ({ ...f, didntWorkPhysical: f.didntWorkPhysical ? f.didntWorkPhysical + '; ' + fields.physical_improve  : fields.physical_improve }));
+    if (fields.tactics_improve)   setForm(f => ({ ...f, didntWorkTactics:  f.didntWorkTactics  ? f.didntWorkTactics  + '; ' + fields.tactics_improve   : fields.tactics_improve }));
   };
 
   const handleSave = async () => {
@@ -131,7 +174,14 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
         opponent_name_raw: `${form.opponentFirst} ${form.opponentLast}`.trim(),
         outcome: form.outcome, score: form.score, mood_score: form.mood,
         energy_level: energy, body_issues: bodyIssues,
-        went_well: form.wentWell, didnt_work: form.didntWork,
+        went_well: combineSubfields({
+          shots: form.wentWellShots, mentality: form.wentWellMentality,
+          physical: form.wentWellPhysical, tactics: form.wentWellTactics,
+        }),
+        didnt_work: combineSubfields({
+          shots: form.didntWorkShots, mentality: form.didntWorkMentality,
+          physical: form.didntWorkPhysical, tactics: form.didntWorkTactics,
+        }),
       };
       const { error } = isEdit
         ? await supabase.from('matches').update(payload).eq('id', editMatch.id)
@@ -148,7 +198,6 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
       const msg = encodeURIComponent(`🎾 Tennis match audio (${formatDate(form.date)}): ${audioUrl}`);
       window.open(`https://wa.me/?text=${msg}`, '_blank');
     } else {
-      // Storage upload failed — download the file and prompt user to attach
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url; a.download = `match-${form.date}.webm`;
@@ -156,6 +205,42 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
       setTimeout(() => URL.revokeObjectURL(url), 5000);
       alert('Audio downloaded! Open WhatsApp and attach the file to send to your coach.');
     }
+  };
+
+  const FeedbackSection = ({ sectionKey, title, color }) => {
+    const prefix = sectionKey === 'well' ? 'wentWell' : 'didntWork';
+    return (
+      <div className={styles.card}>
+        <div className={styles.feedbackHeader}>
+          <span className={styles.feedbackTitle} style={{ color }}>{title}</span>
+        </div>
+        {PERF_AREAS.map(area => {
+          const fieldKey = prefix + area.key.charAt(0).toUpperCase() + area.key.slice(1);
+          const improvePlaceholder = area.key === 'shots'
+            ? 'e.g. second serve double faults, backhand under pressure...'
+            : area.key === 'mentality'
+            ? 'e.g. got frustrated after errors, lost focus in 3rd set...'
+            : area.key === 'physical'
+            ? 'e.g. tired in final set, slow to recover between points...'
+            : 'e.g. too predictable, kept hitting to opponent\'s strength...';
+          return (
+            <div key={area.key} className={styles.subSection}>
+              <label className={styles.subLabel}>
+                <span className={styles.subEmoji}>{area.emoji}</span>
+                {area.label}
+              </label>
+              <textarea
+                className={styles.subTextarea}
+                value={form[fieldKey]}
+                onChange={e => set(fieldKey, e.target.value)}
+                placeholder={sectionKey === 'well' ? area.placeholder : improvePlaceholder}
+                rows={2}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   return (
@@ -331,17 +416,11 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
           <BodyCondition onEnergyChange={setEnergy} onIssuesChange={setBodyIssues} />
         </div>
 
-        {/* Went well */}
-        <div className={styles.card}>
-          <VoiceField label={tr.wentWell} value={form.wentWell}
-            onChange={v => set('wentWell', v)} lang={lang} inline />
-        </div>
+        {/* What went well — sub-categories */}
+        <FeedbackSection sectionKey="well" title="✅ WHAT WENT WELL" color="#ccff00" />
 
-        {/* Didn't work */}
-        <div className={styles.card}>
-          <VoiceField label={tr.didntWork} value={form.didntWork}
-            onChange={v => set('didntWork', v)} lang={lang} inline />
-        </div>
+        {/* What needs work — sub-categories */}
+        <FeedbackSection sectionKey="improve" title="🔧 WHAT NEEDS WORK" color="#ff6b35" />
 
         {/* Save */}
         <button className={`${styles.saveBtn} ${saved ? styles.savedBtn : ''}`}

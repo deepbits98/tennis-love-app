@@ -17,12 +17,21 @@ Extract the following fields and return ONLY valid JSON with these exact keys:
   "surface": "hard" or "clay" or "grass" or "",
   "session_type": "practice" or "tournament" or "",
   "tournament_level": "U-14 or U-16 or U-18 or AITA or ATF or ITF or UTR or TPL or empty",
-  "went_well": "",
-  "didnt_work": "",
+  "shots_well": "specific shots/strokes that worked well (forehand, backhand, serve, return, volley, smash etc)",
+  "mentality_well": "positive mental aspects: focus, composure, pressure handling, confidence, decision-making",
+  "physical_well": "positive physical aspects: fitness, speed, movement, stamina, agility",
+  "tactics_well": "tactical/strategic positives: game plan, patterns, court positioning, use of angles",
+  "shots_improve": "shots/strokes that need improvement — be specific about which shot and why",
+  "mentality_improve": "mental aspects to work on: losing focus, nerves, frustration, poor decisions under pressure",
+  "physical_improve": "physical aspects to improve: tired quickly, slow feet, late to shots",
+  "tactics_improve": "tactical areas to improve: predictable patterns, wrong shot selection, poor positioning",
   "mood_hint": "elated" or "happy" or "okay" or "meh" or "low" or "frustrated" or ""
 }
-IMPORTANT: ALL field values must be in English regardless of what language the player spoke. Translate everything to English.
-If a field is not mentioned, leave it as empty string.
+IMPORTANT:
+- ALL field values must be in English regardless of what language the player spoke. Translate everything to English.
+- For the 8 performance sub-fields: extract ONLY what is clearly stated in that specific area. Do not invent or assume.
+- Be concise but specific — "first serve percentage was low" is better than "serve needs work".
+- If a field is not mentioned, leave it as empty string.
 Return ONLY the JSON object, no explanation.`;
 }
 

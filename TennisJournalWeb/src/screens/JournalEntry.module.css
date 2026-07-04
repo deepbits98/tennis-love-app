@@ -204,6 +204,46 @@
 }
 .suggestItem:active { background: rgba(204,255,0,0.08); }
 
+.feedbackHeader {
+  margin-bottom: 14px;
+}
+
+.feedbackTitle {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  font-family: 'Orbitron', monospace; text-transform: uppercase;
+}
+
+.subSection {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(204,255,0,0.08);
+}
+.subSection:first-of-type { border-top: none; padding-top: 0; }
+
+.subLabel {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  color: rgba(204,255,0,0.45); text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.subEmoji { font-size: 13px; }
+
+.subTextarea {
+  width: 100%; background: rgba(7,8,10,0.7);
+  border: 1px solid rgba(204,255,0,0.15);
+  border-radius: 10px; padding: 9px 12px;
+  color: rgba(204,255,0,0.9); font-size: 13px; line-height: 1.5;
+  font-family: 'Share Tech Mono', monospace;
+  resize: none; transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.subTextarea::placeholder { color: rgba(204,255,0,0.2); }
+.subTextarea:focus {
+  outline: none; border-color: rgba(204,255,0,0.45);
+  background: rgba(7,8,10,0.9);
+}
+
 .saveBtn {
   width: 100%; padding: 18px; border-radius: 18px;
   background: #ccff00;
