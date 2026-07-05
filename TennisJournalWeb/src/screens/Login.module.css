@@ -35,7 +35,7 @@
 /* Player cutout — moved in from right edge, no overlap with content */
 .heroImage {
   position: absolute;
-  left: 42%;
+  left: 46%;
   bottom: 4%;
   height: 88%;
   width: auto;
@@ -65,7 +65,7 @@
   justify-content: center;
   padding: max(60px, env(safe-area-inset-top)) 0
            max(40px, env(safe-area-inset-bottom)) 0;
-  padding-left: max(100px, 12vw);
+  padding-left: max(120px, 14vw);
 }
 
 .title {
