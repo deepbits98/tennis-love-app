@@ -1,55 +1,16 @@
 .page {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  background: #010d2e;
   position: relative;
   overflow: hidden;
-  background: #010d2e;
-}
-
-/* Blue glow behind player */
-.heroGlow {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px; height: 280px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Player cutout — transparent PNG from remove.bg */
-.heroImage {
-  position: absolute;
-  bottom: 220px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 300px;
-  height: auto;
-  z-index: 2;
-  filter: drop-shadow(-10px 10px 30px rgba(37,99,235,0.5))
-          drop-shadow(0 0 60px rgba(37,99,235,0.2));
-  pointer-events: none;
-}
-
-/* Fade bottom of player into background */
-.heroFade {
-  position: absolute;
-  bottom: 210px;
-  left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to top, #010d2e 0%, transparent 100%);
-  z-index: 3;
-  pointer-events: none;
 }
 
 .langBtn {
   position: absolute;
   top: max(18px, env(safe-area-inset-top));
   right: 18px;
-  z-index: 10;
+  z-index: 20;
   padding: 7px 18px; border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.08);
@@ -58,86 +19,130 @@
   backdrop-filter: blur(10px);
 }
 
-/* All content sits at bottom */
+/* Blue radial glow behind player */
+.heroGlow {
+  position: absolute;
+  right: 5%; top: 5%;
+  width: 50%; height: 90%;
+  background: radial-gradient(ellipse at center,
+    rgba(37,99,235,0.35) 0%,
+    rgba(37,99,235,0.1) 50%,
+    transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Player cutout — anchored bottom-right, tall */
+.heroImage {
+  position: absolute;
+  right: -4%;
+  bottom: 0;
+  height: 94%;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(-24px 0 40px rgba(37,99,235,0.55));
+}
+
+/* Gradient that bleeds from left into the player area */
+.heroFade {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 70%;
+  background: linear-gradient(to right, #010d2e 45%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── LEFT CONTENT ── */
 .content {
-  position: relative; z-index: 2;
-  margin-top: auto;
-  padding: 0 24px max(32px, env(safe-area-inset-bottom)) 24px;
-  display: flex; flex-direction: column; align-items: flex-start;
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 62%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: max(60px, env(safe-area-inset-top)) 0
+           max(40px, env(safe-area-inset-bottom)) 28px;
 }
 
 .title {
-  font-size: 52px; font-weight: 900; letter-spacing: 2px;
+  font-size: 38px; font-weight: 900; letter-spacing: 1px;
   color: #ffffff; font-family: 'Exo 2', sans-serif;
-  line-height: 1.05; margin-bottom: 6px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  line-height: 1.05; margin-bottom: 5px;
+  white-space: nowrap;
 }
-
-.titleAccent {
-  color: #3b82f6;
-}
+.titleAccent { color: #3b82f6; }
 
 .subtitle {
-  font-size: 13px; color: rgba(255,255,255,0.55);
+  font-size: 11px; color: rgba(255,255,255,0.4);
   font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 1px; margin-bottom: 24px;
+  letter-spacing: 1px; margin-bottom: 22px;
 }
 
-/* L·O·V·E boxes — smaller, with icons */
+/* 2×2 LOVE grid */
 .meaningGrid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 8px; width: 100%; margin-bottom: 28px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 7px; margin-bottom: 22px;
+  width: 100%; max-width: 220px;
 }
 
 .meaningItem {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 5px;
-  background: rgba(59,130,246,0.12);
-  border: 1px solid rgba(59,130,246,0.3);
-  border-radius: 14px; padding: 10px 6px;
-  backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: rgba(37,99,235,0.1);
+  border: 1px solid rgba(59,130,246,0.28);
+  border-radius: 12px; padding: 10px 6px;
 }
 
-.meaningIcon {
-  font-size: 18px; line-height: 1;
-}
-
+.meaningIcon { font-size: 15px; line-height: 1; }
 .meaningLetter {
-  font-size: 18px; font-weight: 900; color: #3b82f6;
+  font-size: 16px; font-weight: 900; color: #3b82f6;
   font-family: 'Exo 2', sans-serif; line-height: 1;
 }
-
 .meaningWord {
-  font-size: 8px; font-weight: 700; color: rgba(255,255,255,0.45);
+  font-size: 7px; font-weight: 700; color: rgba(255,255,255,0.35);
   font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 0.5px; text-transform: uppercase;
-  text-align: center; line-height: 1.2;
+  letter-spacing: 0.5px; text-transform: uppercase; text-align: center;
 }
 
 /* Sign in button */
 .googleBtn {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  width: 100%;
-  background: #2563eb; border-radius: 16px;
-  padding: 18px 32px; border: none; cursor: pointer;
-  font-size: 15px; font-weight: 800; color: white;
-  font-family: 'Exo 2', sans-serif; letter-spacing: 1px;
-  box-shadow: 0 8px 32px rgba(37,99,235,0.5);
-  transition: transform 0.15s, box-shadow 0.15s;
-  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; max-width: 220px;
+  background: #2563eb; border-radius: 14px;
+  padding: 15px 18px; border: none; cursor: pointer;
+  font-size: 14px; font-weight: 800; color: white;
+  font-family: 'Exo 2', sans-serif; letter-spacing: 0.5px;
+  box-shadow: 0 6px 24px rgba(37,99,235,0.55);
+  transition: transform 0.15s; margin-bottom: 14px;
 }
 .googleBtn:active { transform: scale(0.97); }
 .googleBtn:disabled { opacity: 0.6; }
 
 .gIcon {
-  width: 28px; height: 28px; border-radius: 50%;
+  width: 22px; height: 22px; border-radius: 50%;
   background: white; display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 900; color: #2563eb;
-  font-family: 'Exo 2', sans-serif; flex-shrink: 0;
+  font-size: 12px; font-weight: 900; color: #2563eb;
+  flex-shrink: 0; font-family: 'Exo 2', sans-serif;
 }
 
 .tagline {
-  font-size: 12px; color: rgba(255,255,255,0.25);
-  font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 1px; text-align: center; width: 100%;
+  font-size: 10px; color: rgba(255,255,255,0.2);
+  font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
+}
+
+/* ── MOBILE (≤ 430px) ── */
+@media (max-width: 430px) {
+  .content {
+    width: 60%;
+    padding-left: 20px;
+    justify-content: flex-end;
+    padding-bottom: max(52px, env(safe-area-inset-bottom));
+  }
+  .title { font-size: 30px; letter-spacing: 0.5px; }
+  .heroImage { height: 82%; right: -6%; }
+  .meaningGrid { max-width: 190px; gap: 6px; }
+  .googleBtn { max-width: 190px; padding: 13px 14px; font-size: 13px; }
+  .heroGlow { width: 60%; }
 }
