@@ -1,6 +1,6 @@
-const Anthropic = require('@anthropic-ai/sdk');
+const OpenAI = require('openai');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 function buildAnalysisPrompt(d) {
   const stat = (val, unit = '') => (val != null && val !== '') ? `${val}${unit}` : 'not recorded';
@@ -69,14 +69,16 @@ Coaching rules:
 }
 
 async function analyzeMatch(matchData) {
-  const message = await anthropic.messages.create({
-    model: 'claude-haiku-4-5-20251001',
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o-mini',
     max_tokens: 2048,
-    messages: [{ role: 'user', content: 'Analyze this match.' }],
-    system: buildAnalysisPrompt(matchData),
+    messages: [
+      { role: 'system', content: buildAnalysisPrompt(matchData) },
+      { role: 'user', content: 'Analyze this match.' },
+    ],
   });
 
-  const text = message.content[0].text;
+  const text = response.choices[0].message.content;
   const start = text.indexOf('{');
   const end = text.lastIndexOf('}');
   if (start === -1 || end === -1) throw new Error('No JSON found in analysis response');
