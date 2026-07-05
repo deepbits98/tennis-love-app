@@ -393,23 +393,25 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
         {/* Location */}
         <div className={styles.card}>
           <label className={styles.cardLabel}>{tr.location}</label>
-          <div style={{ position: 'relative' }}>
-            <input placeholder={tr.city} value={form.city}
-              onChange={e => { set('city', e.target.value); setCitySuggestions(e.target.value.length > 0 ? cities.filter(c => c.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
-            {citySuggestions.length > 0 && (
-              <div className={styles.inlineSuggest}>
-                {citySuggestions.map(c => <button key={c} className={styles.suggestItem} onClick={() => { set('city', c); setCitySuggestions([]); }}>📍 {c}</button>)}
-              </div>
-            )}
-          </div>
-          <div style={{ position: 'relative', marginTop: 8 }}>
-            <input placeholder={tr.venue} value={form.venue}
-              onChange={e => { set('venue', e.target.value); setVenueSuggestions(e.target.value.length > 0 ? venues.filter(v => v.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
-            {venueSuggestions.length > 0 && (
-              <div className={styles.inlineSuggest}>
-                {venueSuggestions.map(v => <button key={v} className={styles.suggestItem} onClick={() => { set('venue', v); setVenueSuggestions([]); }}>🏟 {v}</button>)}
-              </div>
-            )}
+          <div className={styles.row2} style={{ alignItems: 'flex-start' }}>
+            <div style={{ flex: 1, position: 'relative' }}>
+              <input placeholder={tr.city} value={form.city}
+                onChange={e => { set('city', e.target.value); setCitySuggestions(e.target.value.length > 0 ? cities.filter(c => c.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
+              {citySuggestions.length > 0 && (
+                <div className={styles.inlineSuggest}>
+                  {citySuggestions.map(c => <button key={c} className={styles.suggestItem} onClick={() => { set('city', c); setCitySuggestions([]); }}>📍 {c}</button>)}
+                </div>
+              )}
+            </div>
+            <div style={{ flex: 1, position: 'relative' }}>
+              <input placeholder={tr.venue} value={form.venue}
+                onChange={e => { set('venue', e.target.value); setVenueSuggestions(e.target.value.length > 0 ? venues.filter(v => v.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
+              {venueSuggestions.length > 0 && (
+                <div className={styles.inlineSuggest}>
+                  {venueSuggestions.map(v => <button key={v} className={styles.suggestItem} onClick={() => { set('venue', v); setVenueSuggestions([]); }}>🏟 {v}</button>)}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

@@ -4,10 +4,10 @@ import { t } from '../i18n';
 import styles from './Login.module.css';
 
 const MEANING = [
-  { letter: 'L', word: 'Learning' },
-  { letter: 'O', word: 'Observation' },
-  { letter: 'V', word: 'Velocity' },
-  { letter: 'E', word: 'Execution' },
+  { letter: 'L', word: 'Learning',    icon: '📚' },
+  { letter: 'O', word: 'Observation', icon: '👁️' },
+  { letter: 'V', word: 'Velocity',    icon: '⚡' },
+  { letter: 'E', word: 'Execution',   icon: '🎯' },
 ];
 
 export default function Login({ lang, setLang }) {
@@ -24,17 +24,23 @@ export default function Login({ lang, setLang }) {
 
   return (
     <div className={styles.page}>
-      <button className={styles.langBtn} onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}>{tr.lang}</button>
+      <div className={styles.heroBg} />
+      <div className={styles.heroOverlay} />
 
-      <div className={styles.center}>
-        <div className={styles.logo}>🎾</div>
-        <h1 className={styles.title}>TENNIS</h1>
-        <h1 className={styles.title} style={{ marginTop: -8 }}>LOVE</h1>
+      <button className={styles.langBtn} onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}>
+        {tr.lang}
+      </button>
+
+      <div className={styles.content}>
+        <h1 className={styles.title}>
+          TENNIS <span className={styles.titleAccent}>LOVE</span>
+        </h1>
         <p className={styles.subtitle}>Your Match. Your Journey.</p>
 
         <div className={styles.meaningGrid}>
-          {MEANING.map(({ letter, word }) => (
+          {MEANING.map(({ letter, word, icon }) => (
             <div key={letter} className={styles.meaningItem}>
+              <span className={styles.meaningIcon}>{icon}</span>
               <span className={styles.meaningLetter}>{letter}</span>
               <span className={styles.meaningWord}>{word}</span>
             </div>
