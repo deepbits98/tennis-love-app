@@ -480,6 +480,9 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
           </div>
           <input style={{ marginTop: 12 }} placeholder={tr.scorePlaceholder}
             value={form.score} onChange={e => set('score', e.target.value)} />
+          <p style={{ marginTop: 6, fontSize: 11, color: 'rgba(204,255,0,0.4)', fontFamily: "'Share Tech Mono', monospace", letterSpacing: '0.5px' }}>
+            💡 Please manually add tie-break scores in brackets e.g. 7-6 (7-4)
+          </p>
         </div>
 
         {/* Mood */}
