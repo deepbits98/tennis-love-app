@@ -65,7 +65,7 @@
   justify-content: center;
   padding: max(60px, env(safe-area-inset-top)) 0
            max(40px, env(safe-area-inset-bottom)) 0;
-  padding-left: max(80px, 9vw);
+  padding-left: max(100px, 12vw);
 }
 
 .title {
