@@ -8,7 +8,7 @@ import AnalysisCard from '../components/AnalysisCard';
 import styles from './JournalEntry.module.css';
 import LangBtn from '../components/LangBtn';
 
-const BACKEND = 'http://localhost:3001';
+const BACKEND = 'https://tennis-love-app-production.up.railway.app';
 const LEVELS = ['U-14', 'U-16', 'U-18', 'AITA', 'ATF', 'ITF', 'UTR', 'TPL'];
 const SURFACES = ['hard', 'clay', 'grass'];
 

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './VoiceField.module.css';
 
-const BACKEND = 'http://localhost:3001';
+const BACKEND = 'https://tennis-love-app-production.up.railway.app';
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
