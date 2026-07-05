@@ -133,27 +133,53 @@
   font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
 }
 
-/* ── MOBILE (≤ 480px) ── */
+/* ── MOBILE (≤ 480px) — stacked layout ── */
 @media (max-width: 480px) {
+  /* Top 60%: all controls, centered */
   .content {
-    left: 0;
-    width: 57%;
-    padding-left: 22px;
-    padding-right: 0;
+    left: 0; right: 0; top: 0; bottom: auto;
+    width: 100%; height: 60%;
+    padding: max(48px, env(safe-area-inset-top)) 32px 0;
     justify-content: center;
+    align-items: center;
+    text-align: center;
   }
-  .title { font-size: 30px; letter-spacing: 0.5px; white-space: nowrap; }
-  .subtitle { font-size: 9px; margin-bottom: 16px; letter-spacing: 1px; }
-  /* Federer right-anchored, pulled back so no overlap */
-  .heroImage { left: auto; right: -14%; height: 76%; bottom: 3%; }
-  /* Stronger gradient on mobile to protect text */
-  .heroFade { width: 65%; background: linear-gradient(to right, #010d2e 50%, transparent 100%); }
-  .heroGlow { right: 0; width: 65%; }
-  .meaningGrid { max-width: 190px; gap: 6px; margin-bottom: 16px; }
-  .meaningItem { padding: 10px 6px; border-radius: 10px; }
-  .meaningIcon { font-size: 15px; }
-  .meaningLetter { font-size: 17px; }
-  .meaningWord { font-size: 7px; }
-  .googleBtn { max-width: 190px; padding: 13px 14px; font-size: 13px; border-radius: 14px; }
-  .tagline { font-size: 9px; }
+
+  .title { font-size: 36px; letter-spacing: 1px; white-space: nowrap; }
+  .subtitle { font-size: 10px; margin-bottom: 20px; letter-spacing: 1.5px; }
+
+  /* 2×2 grid centered */
+  .meaningGrid { max-width: 280px; gap: 8px; margin-bottom: 20px; }
+  .meaningItem { padding: 12px 8px; border-radius: 12px; }
+  .meaningIcon { font-size: 18px; }
+  .meaningLetter { font-size: 20px; }
+  .meaningWord { font-size: 8px; }
+
+  /* Button centered */
+  .googleBtn { max-width: 280px; padding: 15px 20px; font-size: 15px; }
+  .tagline { font-size: 10px; }
+
+  /* Federer below content — anchored top so head shows, legs clip off */
+  .heroImage {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto; bottom: auto;
+    top: calc(60% + 15px); /* 15px ≈ 4mm gap */
+    height: 68%;
+    width: auto;
+  }
+
+  /* Horizontal fade → thin top-to-bottom gradient at the boundary */
+  .heroFade {
+    left: 0; right: 0; bottom: auto;
+    top: 57%; width: 100%; height: 60px;
+    background: linear-gradient(to bottom, #010d2e, transparent);
+  }
+
+  /* Glow below content, centered */
+  .heroGlow {
+    left: 50%; right: auto; top: 58%;
+    transform: translateX(-50%);
+    width: 80%; height: 45%;
+  }
 }
