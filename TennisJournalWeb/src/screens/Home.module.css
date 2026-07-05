@@ -66,8 +66,8 @@
 .footer { padding: 0 14px; max-width: 600px; margin: 0 auto; width: 100%; }
 .signOutBtn {
   width: 100%; padding: 14px; border-radius: 14px;
-  background: none; border: 1px solid rgba(255,0,0,0.2);
-  color: rgba(255,80,80,0.6); font-size: 12px; font-weight: 600; cursor: pointer;
+  background: #e74c3c; border: none;
+  color: #0a0a0a; font-size: 12px; font-weight: 800; cursor: pointer;
   transition: all 0.15s; font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
 }
-.signOutBtn:active { background: rgba(255,0,0,0.05); }
+.signOutBtn:active { background: #c0392b; }
