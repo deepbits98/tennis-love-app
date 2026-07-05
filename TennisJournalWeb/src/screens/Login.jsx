@@ -24,8 +24,9 @@ export default function Login({ lang, setLang }) {
 
   return (
     <div className={styles.page}>
-      <div className={styles.heroBg} />
-      <div className={styles.heroOverlay} />
+      <div className={styles.heroGlow} />
+      <img src="/hero.png" alt="" className={styles.heroImage} />
+      <div className={styles.heroFade} />
 
       <button className={styles.langBtn} onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}>
         {tr.lang}
