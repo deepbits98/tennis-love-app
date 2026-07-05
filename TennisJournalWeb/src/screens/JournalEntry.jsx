@@ -380,69 +380,52 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
 
         <div className={revealed ? styles.fieldsPanel : styles.fieldsPanelHidden}>
 
-        {/* Date + Location */}
-        <div className={styles.rowCards}>
-          <div className={styles.card} style={{ flex: 1 }}>
-            <label className={styles.cardLabel}>{tr.date}</label>
-            <div className={styles.dateDisplay} onClick={() => dateInputRef.current?.showPicker()}>
-              {formatDate(form.date)}
-            </div>
-            <input ref={dateInputRef} type="date" value={form.date}
-              onChange={e => set('date', e.target.value)} className={styles.hiddenDateInput} />
+        {/* Date */}
+        <div className={styles.card}>
+          <label className={styles.cardLabel}>{tr.date}</label>
+          <div className={styles.dateDisplay} onClick={() => dateInputRef.current?.showPicker()}>
+            {formatDate(form.date)}
           </div>
-          <div className={styles.card} style={{ flex: 2 }}>
-            <label className={styles.cardLabel}>{tr.location}</label>
-            <div className={styles.row2} style={{ alignItems: 'flex-start' }}>
-              <div style={{ flex: 1, position: 'relative' }}>
-                <input placeholder={tr.city} value={form.city}
-                  onChange={e => { set('city', e.target.value); setCitySuggestions(e.target.value.length > 0 ? cities.filter(c => c.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
-                {citySuggestions.length > 0 && (
-                  <div className={styles.inlineSuggest}>
-                    {citySuggestions.map(c => <button key={c} className={styles.suggestItem} onClick={() => { set('city', c); setCitySuggestions([]); }}>📍 {c}</button>)}
-                  </div>
-                )}
+          <input ref={dateInputRef} type="date" value={form.date}
+            onChange={e => set('date', e.target.value)} className={styles.hiddenDateInput} />
+        </div>
+
+        {/* Location */}
+        <div className={styles.card}>
+          <label className={styles.cardLabel}>{tr.location}</label>
+          <div style={{ position: 'relative' }}>
+            <input placeholder={tr.city} value={form.city}
+              onChange={e => { set('city', e.target.value); setCitySuggestions(e.target.value.length > 0 ? cities.filter(c => c.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
+            {citySuggestions.length > 0 && (
+              <div className={styles.inlineSuggest}>
+                {citySuggestions.map(c => <button key={c} className={styles.suggestItem} onClick={() => { set('city', c); setCitySuggestions([]); }}>📍 {c}</button>)}
               </div>
-              <div style={{ flex: 1, position: 'relative' }}>
-                <input placeholder={tr.venue} value={form.venue}
-                  onChange={e => { set('venue', e.target.value); setVenueSuggestions(e.target.value.length > 0 ? venues.filter(v => v.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
-                {venueSuggestions.length > 0 && (
-                  <div className={styles.inlineSuggest}>
-                    {venueSuggestions.map(v => <button key={v} className={styles.suggestItem} onClick={() => { set('venue', v); setVenueSuggestions([]); }}>🏟 {v}</button>)}
-                  </div>
-                )}
+            )}
+          </div>
+          <div style={{ position: 'relative', marginTop: 8 }}>
+            <input placeholder={tr.venue} value={form.venue}
+              onChange={e => { set('venue', e.target.value); setVenueSuggestions(e.target.value.length > 0 ? venues.filter(v => v.toLowerCase().includes(e.target.value.toLowerCase())) : []); }} />
+            {venueSuggestions.length > 0 && (
+              <div className={styles.inlineSuggest}>
+                {venueSuggestions.map(v => <button key={v} className={styles.suggestItem} onClick={() => { set('venue', v); setVenueSuggestions([]); }}>🏟 {v}</button>)}
               </div>
-            </div>
+            )}
           </div>
         </div>
 
         {/* Session + Surface */}
         <div className={styles.card}>
-          <div className={styles.row2} style={{ alignItems: 'flex-start' }}>
-            <div style={{ flex: 1 }}>
-              <label className={styles.cardLabel}>{tr.session}</label>
-              <div className={styles.pills}>
-                {['practice', 'tournament'].map(s => (
-                  <button key={s} onClick={() => set('sessionType', s)}
-                    className={`${styles.pill} ${form.sessionType === s ? styles.pillActive : ''}`}>
-                    {s === 'practice' ? tr.practice : tr.tournament}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div style={{ flex: 1 }}>
-              <label className={styles.cardLabel}>{tr.surface}</label>
-              <div className={styles.pills}>
-                {SURFACES.map(s => (
-                  <button key={s} onClick={() => set('surface', s)}
-                    className={`${styles.pill} ${form.surface === s ? styles.pillActive : ''}`}>
-                    {tr[s]}
-                  </button>
-                ))}
-              </div>
-            </div>
+          <label className={styles.cardLabel}>{tr.session}</label>
+          <div className={styles.pills}>
+            {['practice', 'tournament'].map(s => (
+              <button key={s} onClick={() => set('sessionType', s)}
+                className={`${styles.pill} ${form.sessionType === s ? styles.pillActive : ''}`}>
+                {s === 'practice' ? tr.practice : tr.tournament}
+              </button>
+            ))}
           </div>
           {form.sessionType === 'tournament' && (
-            <div style={{ marginTop: 12 }}>
+            <div style={{ marginTop: 14 }}>
               <label className={styles.cardLabel}>{tr.level}</label>
               <div className={styles.pills}>
                 {LEVELS.map(l => (
@@ -452,6 +435,17 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
               </div>
             </div>
           )}
+          <div style={{ marginTop: 14 }}>
+            <label className={styles.cardLabel}>{tr.surface}</label>
+            <div className={styles.pills}>
+              {SURFACES.map(s => (
+                <button key={s} onClick={() => set('surface', s)}
+                  className={`${styles.pill} ${form.surface === s ? styles.pillActive : ''}`}>
+                  {tr[s]}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Opponent */}

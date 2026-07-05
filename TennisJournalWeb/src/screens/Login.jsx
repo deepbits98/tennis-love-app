@@ -3,6 +3,13 @@ import { supabase } from '../lib/supabase';
 import { t } from '../i18n';
 import styles from './Login.module.css';
 
+const MEANING = [
+  { letter: 'L', word: 'Learning' },
+  { letter: 'O', word: 'Observation' },
+  { letter: 'V', word: 'Velocity' },
+  { letter: 'E', word: 'Execution' },
+];
+
 export default function Login({ lang, setLang }) {
   const tr = t[lang];
   const [loading, setLoading] = useState(false);
@@ -21,13 +28,17 @@ export default function Login({ lang, setLang }) {
 
       <div className={styles.center}>
         <div className={styles.logo}>🎾</div>
-        <h1 className={styles.title}>{tr.appName}</h1>
-        <p className={styles.subtitle}>{tr.subtitle}</p>
+        <h1 className={styles.title}>TENNIS</h1>
+        <h1 className={styles.title} style={{ marginTop: -8 }}>LOVE</h1>
+        <p className={styles.subtitle}>Your Match. Your Journey.</p>
 
-        <div className={styles.courtDecor}>
-          <div className={styles.line} />
-          <div className={styles.circle} />
-          <div className={styles.line} />
+        <div className={styles.meaningGrid}>
+          {MEANING.map(({ letter, word }) => (
+            <div key={letter} className={styles.meaningItem}>
+              <span className={styles.meaningLetter}>{letter}</span>
+              <span className={styles.meaningWord}>{word}</span>
+            </div>
+          ))}
         </div>
 
         <button className={styles.googleBtn} onClick={handleGoogleLogin} disabled={loading}>
