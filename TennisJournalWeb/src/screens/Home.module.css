@@ -1,8 +1,8 @@
 .page { min-height: 100vh; display: flex; flex-direction: column; padding: 0 0 40px; }
 
 .header {
-  background: linear-gradient(160deg, rgba(204,255,0,0.06) 0%, rgba(7,8,10,0) 100%);
-  border-bottom: 1px solid rgba(204,255,0,0.15);
+  background: linear-gradient(160deg, rgba(37,99,235,0.08) 0%, rgba(1,13,46,0) 100%);
+  border-bottom: 1px solid rgba(59,130,246,0.15);
   padding: 52px 0 28px;
 }
 
@@ -11,15 +11,15 @@
   max-width: 600px; margin: 0 auto; padding: 0 14px; width: 100%;
 }
 
-.date { font-size: 12px; color: rgba(204,255,0,0.6); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Share Tech Mono', monospace; }
+.date { font-size: 12px; color: rgba(59,130,246,0.7); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Share Tech Mono', monospace; }
 .welcome { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; font-family: 'Exo 2', monospace; color: #fff; }
-.sub { font-size: 12px; color: rgba(204,255,0,0.5); letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; }
+.sub { font-size: 12px; color: rgba(59,130,246,0.6); letter-spacing: 1px; font-family: 'Share Tech Mono', monospace; }
 
 .langBtn {
   padding: 6px 14px; border-radius: 16px;
-  border: 1px solid rgba(204,255,0,0.3);
-  background: rgba(204,255,0,0.08);
-  color: #ccff00; font-size: 12px; font-weight: 700; cursor: pointer;
+  border: 1px solid rgba(59,130,246,0.35);
+  background: rgba(37,99,235,0.1);
+  color: #93c5fd; font-size: 12px; font-weight: 700; cursor: pointer;
   margin-top: 4px; font-family: 'Share Tech Mono', monospace;
 }
 
@@ -32,8 +32,8 @@
 .primaryCard, .card {
   display: flex; align-items: center; gap: 16px;
   padding: 20px 18px; border-radius: 20px;
-  border: 1px solid rgba(204,255,0,0.15);
-  background: rgba(13,15,10,0.8);
+  border: 1px solid rgba(59,130,246,0.15);
+  background: rgba(2,14,46,0.8);
   backdrop-filter: blur(20px);
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
   cursor: pointer; text-align: left; width: 100%;
@@ -42,16 +42,16 @@
 }
 .primaryCard::before, .card::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  background: #ccff00;
+  background: #3b82f6;
 }
 .card:nth-child(2)::before { background: #ff6b35; }
 .card:nth-child(3)::before { background: #a855f7; }
 .card:nth-child(4)::before { background: #333; }
 
 .primaryCard {
-  background: rgba(204,255,0,0.06);
-  border-color: rgba(204,255,0,0.3);
-  box-shadow: 0 4px 28px rgba(204,255,0,0.1);
+  background: rgba(37,99,235,0.08);
+  border-color: rgba(59,130,246,0.3);
+  box-shadow: 0 4px 28px rgba(37,99,235,0.12);
 }
 .primaryCard:active, .card:active { transform: scale(0.98); }
 
@@ -60,8 +60,8 @@
 .cardIcon { font-size: 32px; flex-shrink: 0; }
 .cardText { flex: 1; display: flex; flex-direction: column; gap: 3px; }
 .cardTitle { font-size: 14px; font-weight: 700; color: white; letter-spacing: 1px; font-family: 'Exo 2', monospace; }
-.cardSub { font-size: 11px; color: rgba(204,255,0,0.5); font-family: 'Share Tech Mono', monospace; }
-.arrow { font-size: 20px; color: rgba(204,255,0,0.4); }
+.cardSub { font-size: 11px; color: rgba(59,130,246,0.6); font-family: 'Share Tech Mono', monospace; }
+.arrow { font-size: 20px; color: rgba(59,130,246,0.5); }
 
 .footer { padding: 0 14px; max-width: 600px; margin: 0 auto; width: 100%; }
 .signOutBtn {
