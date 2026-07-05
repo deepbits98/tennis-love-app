@@ -1,6 +1,6 @@
-const Anthropic = require('@anthropic-ai/sdk');
+const OpenAI = require('openai');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 function buildPrompt(today) {
   return `You are a tennis match journal assistant. Today's date is ${today}.
@@ -39,19 +39,17 @@ Return ONLY the JSON object, no explanation.`;
 }
 
 async function extractFields(transcript, today = new Date().toISOString().split('T')[0]) {
-  const message = await anthropic.messages.create({
-    model: 'claude-haiku-4-5-20251001',
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o-mini',
     max_tokens: 1024,
     messages: [
-      {
-        role: 'user',
-        content: `Transcript: "${transcript}"`,
-      },
+      { role: 'system', content: buildPrompt(today) },
+      { role: 'user', content: `Transcript: "${transcript}"` },
     ],
-    system: buildPrompt(today),
   });
 
-  const raw = message.content[0].text.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+  const raw = response.choices[0].message.content.trim()
+    .replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
 
   try {
     return JSON.parse(raw);
