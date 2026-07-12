@@ -544,21 +544,21 @@ export default function JournalEntry({ lang, setLang, user, onNavigate, editMatc
         {/* What needs work */}
         <FeedbackSection sectionKey="improve" title="🔧 WHAT NEEDS WORK" color="#ff6b35" form={form} onSet={set} />
 
-        {/* AI Coaching Analysis */}
+        {/* AI Suggestions */}
         <div className={styles.analysisOuter}>
           <div className={styles.analysisTriggerHeader}>
-            <span className={styles.analysisTriggerTitle}>🤖 AI COACHING ANALYSIS</span>
+            <span className={styles.analysisTriggerTitle}>🤖 AI SUGGESTIONS</span>
             <span className={styles.analysisBetaBadge}>AI</span>
           </div>
           <p className={styles.analysisTriggerHint}>
-            Get a personalised technical report — specific drills, fitness routines, and tactical fixes based on your match data above.
+            Get a personalised suggestions report — specific drills, fitness routines, and tactical fixes based on your match data above.
           </p>
           <button
             className={styles.generateBtn}
             onClick={generateAnalysis}
             disabled={analyzing}
           >
-            {analyzing ? '✨ Analysing your match...' : '⚡ Generate Coaching Report'}
+            {analyzing ? '✨ Analysing your match...' : '⚡ Generate Suggestions Report'}
           </button>
           {analysis && <AnalysisCard analysis={analysis} onShare={shareAnalysis} />}
         </div>

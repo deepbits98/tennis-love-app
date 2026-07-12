@@ -67,7 +67,12 @@ export default function Home({ user, lang, setLang, onNavigate }) {
 
       <div className={styles.footer}>
         <button className={styles.signOutBtn} onClick={() => {
-          import('../lib/supabase').then(({ supabase }) => supabase.auth.signOut());
+          import('../lib/supabase').then(({ supabase }) => {
+            localStorage.setItem('lastUserName', user.user_metadata?.full_name || user.email || '');
+            localStorage.setItem('lastUserEmail', user.email || '');
+            localStorage.setItem('justSignedOut', '1');
+            supabase.auth.signOut();
+          });
         }}>{tr.signOut}</button>
       </div>
     </div>

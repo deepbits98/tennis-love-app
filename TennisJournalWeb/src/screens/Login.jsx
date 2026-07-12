@@ -14,11 +14,19 @@ export default function Login({ lang, setLang }) {
   const tr = t[lang];
   const [loading, setLoading] = useState(false);
 
-  const handleGoogleLogin = async () => {
+  const justSignedOut = localStorage.getItem('justSignedOut') === '1';
+  const lastUserName = localStorage.getItem('lastUserName') || '';
+  const lastUserEmail = localStorage.getItem('lastUserEmail') || '';
+
+  const signIn = async (forceAccountPicker = false) => {
+    localStorage.removeItem('justSignedOut');
     setLoading(true);
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin },
+      options: {
+        redirectTo: window.location.origin,
+        ...(forceAccountPicker && { queryParams: { prompt: 'select_account' } }),
+      },
     });
   };
 
@@ -48,10 +56,22 @@ export default function Login({ lang, setLang }) {
           ))}
         </div>
 
-        <button className={styles.googleBtn} onClick={handleGoogleLogin} disabled={loading}>
-          <span className={styles.gIcon}>G</span>
-          <span>{loading ? 'Redirecting...' : tr.signIn}</span>
-        </button>
+        {justSignedOut ? (
+          <div className={styles.accountChoice}>
+            <button className={styles.googleBtn} onClick={() => signIn(false)} disabled={loading}>
+              <span className={styles.gIcon}>G</span>
+              <span>{loading ? 'Redirecting...' : `Continue as ${lastUserName || lastUserEmail}`}</span>
+            </button>
+            <button className={styles.switchBtn} onClick={() => signIn(true)} disabled={loading}>
+              🔄 Use a different account
+            </button>
+          </div>
+        ) : (
+          <button className={styles.googleBtn} onClick={() => signIn(false)} disabled={loading}>
+            <span className={styles.gIcon}>G</span>
+            <span>{loading ? 'Redirecting...' : tr.signIn}</span>
+          </button>
+        )}
 
         <p className={styles.tagline}>
           {lang === 'en' ? 'Built for Indian tennis champions 🇮🇳' : 'भारतीय टेनिस चैंपियंस के लिए 🇮🇳'}

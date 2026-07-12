@@ -133,6 +133,22 @@
   font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
 }
 
+.accountChoice {
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%; max-width: 360px; margin-bottom: 14px;
+}
+
+.switchBtn {
+  width: 100%; padding: 14px 20px; border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: 'Exo 2', sans-serif; letter-spacing: 0.5px;
+  transition: transform 0.15s;
+}
+.switchBtn:active { transform: scale(0.97); }
+.switchBtn:disabled { opacity: 0.5; }
+
 /* ── MOBILE (≤ 480px) — stacked layout ── */
 @media (max-width: 480px) {
   /* Top 60%: all controls, centered */

@@ -1,97 +1,97 @@
 .card {
   display: flex; flex-direction: column; gap: 0;
-  background: rgba(10, 6, 20, 0.95);
-  border: 1.5px solid rgba(168,85,247,0.35);
+  background: rgba(13, 17, 30, 0.97);
+  border: 1.5px solid rgba(56,189,248,0.18);
   border-radius: 20px; overflow: hidden;
-  box-shadow: 0 0 32px rgba(168,85,247,0.12);
+  box-shadow: 0 0 32px rgba(56,189,248,0.07);
 }
 
 .section {
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(168,85,247,0.1);
+  border-bottom: 1px solid rgba(56,189,248,0.07);
   display: flex; flex-direction: column; gap: 8px;
 }
 
 .sectionTitle {
   font-size: 10px; font-weight: 800; letter-spacing: 2.5px;
-  color: rgba(168,85,247,0.7); text-transform: uppercase;
+  color: #38bdf8; text-transform: uppercase;
   font-family: 'Exo 2', monospace; margin-bottom: 2px;
 }
 
 .summary {
-  font-size: 13px; line-height: 1.65; color: rgba(204,255,0,0.85);
+  font-size: 13px; line-height: 1.65; color: rgba(226,232,240,0.9);
   font-family: 'Share Tech Mono', monospace; margin: 0;
 }
 
 .bullet {
-  font-size: 13px; line-height: 1.55; color: rgba(204,255,0,0.7);
+  font-size: 13px; line-height: 1.55; color: rgba(203,213,225,0.85);
   font-family: 'Share Tech Mono', monospace;
 }
 
 /* Priority fixes */
 .priorityItem {
-  background: rgba(255,107,53,0.06);
-  border: 1px solid rgba(255,107,53,0.2);
+  background: rgba(249,115,22,0.05);
+  border: 1px solid rgba(249,115,22,0.18);
   border-radius: 12px; padding: 10px 12px;
   display: flex; flex-direction: column; gap: 4px;
 }
 
 .priorityArea {
-  font-size: 12px; font-weight: 800; color: #ff6b35;
+  font-size: 12px; font-weight: 800; color: #f97316;
   font-family: 'Exo 2', monospace; letter-spacing: 1px;
 }
 
 .priorityIssue {
-  font-size: 12px; color: rgba(204,255,0,0.5);
+  font-size: 12px; color: rgba(148,163,184,0.8);
   font-family: 'Share Tech Mono', monospace; line-height: 1.4;
 }
 
 .priorityFix {
-  font-size: 13px; color: rgba(204,255,0,0.85);
+  font-size: 13px; color: rgba(226,232,240,0.9);
   font-family: 'Share Tech Mono', monospace; line-height: 1.4;
   padding-top: 2px;
 }
 
 /* Drills & Fitness */
 .drillItem {
-  background: rgba(204,255,0,0.03);
-  border: 1px solid rgba(204,255,0,0.1);
+  background: rgba(56,189,248,0.04);
+  border: 1px solid rgba(56,189,248,0.12);
   border-radius: 12px; padding: 10px 12px;
   display: flex; flex-direction: column; gap: 4px;
 }
 
 .drillName {
-  font-size: 12px; font-weight: 800; color: #ccff00;
+  font-size: 12px; font-weight: 800; color: #38bdf8;
   font-family: 'Exo 2', monospace; letter-spacing: 0.5px;
 }
 
 .drillMeta {
-  font-size: 11px; color: rgba(168,85,247,0.7);
+  font-size: 11px; color: rgba(148,163,184,0.7);
   font-family: 'Share Tech Mono', monospace;
 }
 
 .drillDesc {
-  font-size: 12px; color: rgba(204,255,0,0.6); line-height: 1.55;
+  font-size: 12px; color: rgba(203,213,225,0.75); line-height: 1.55;
   font-family: 'Share Tech Mono', monospace;
 }
 
 /* Week focus */
 .weekFocusBox {
   margin: 4px 16px 0;
-  background: rgba(168,85,247,0.08);
-  border: 1.5px solid rgba(168,85,247,0.3);
+  background: rgba(52,211,153,0.05);
+  border: 1.5px solid rgba(52,211,153,0.2);
   border-radius: 14px; padding: 14px 16px;
   display: flex; flex-direction: column; gap: 6px;
 }
 
 .weekFocusLabel {
   font-size: 10px; font-weight: 800; letter-spacing: 2px;
-  color: rgba(168,85,247,0.7); text-transform: uppercase;
+  color: #34d399; text-transform: uppercase;
   font-family: 'Exo 2', monospace;
 }
 
 .weekFocusText {
-  font-size: 14px; font-weight: 600; color: #a855f7;
+  font-size: 14px; font-weight: 600; color: rgba(226,232,240,0.95);
   font-family: 'Share Tech Mono', monospace; line-height: 1.5;
 }
 
