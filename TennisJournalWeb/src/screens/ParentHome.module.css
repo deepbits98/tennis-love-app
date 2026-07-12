@@ -1,0 +1,114 @@
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.header {
+  background: linear-gradient(160deg, rgba(56,189,248,0.06) 0%, rgba(7,8,10,0) 100%);
+  border-bottom: 1px solid rgba(56,189,248,0.12);
+  padding: 52px 0 28px;
+}
+.headerInner {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  max-width: 600px; margin: 0 auto; padding: 0 14px; width: 100%;
+}
+.welcome { font-size: 26px; font-weight: 900; color: #fff; margin: 0 0 4px; font-family: 'Exo 2', monospace; }
+.sub { font-size: 12px; color: rgba(56,189,248,0.6); font-family: 'Share Tech Mono', monospace; margin: 0; letter-spacing: 1px; }
+
+.body {
+  flex: 1; display: flex; flex-direction: column; gap: 20px;
+  padding: 20px 14px; max-width: 600px; margin: 0 auto; width: 100%;
+}
+
+.section { display: flex; flex-direction: column; gap: 10px; }
+
+.sectionTitle {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: #38bdf8;
+  font-family: 'Exo 2', monospace; margin-bottom: 2px;
+}
+
+/* Child cards */
+.childCard {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px; border-radius: 18px;
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.2);
+  cursor: pointer; text-align: left; width: 100%;
+  transition: transform 0.15s;
+}
+.childCard:active { transform: scale(0.98); }
+.childIcon { font-size: 28px; flex-shrink: 0; }
+.childInfo { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.childName { font-size: 14px; font-weight: 700; color: white; font-family: 'Exo 2', monospace; }
+.childSub { font-size: 11px; color: rgba(56,189,248,0.6); font-family: 'Share Tech Mono', monospace; }
+.arrow { font-size: 18px; color: rgba(56,189,248,0.5); }
+
+.pendingCard {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px; border-radius: 18px;
+  background: rgba(251,191,36,0.05);
+  border: 1px solid rgba(251,191,36,0.2);
+}
+
+/* Search */
+.searchRow { display: flex; gap: 10px; }
+.searchInput {
+  flex: 1; background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 12px 16px;
+  color: white; font-size: 14px;
+  font-family: 'Share Tech Mono', monospace; outline: none;
+}
+.searchInput:focus { border-color: rgba(56,189,248,0.5); }
+.searchInput::placeholder { color: rgba(255,255,255,0.25); }
+.searchBtn {
+  padding: 12px 20px; border-radius: 14px; border: none;
+  background: #2563eb; color: white; font-size: 13px;
+  font-weight: 700; cursor: pointer; font-family: 'Exo 2', monospace;
+  white-space: nowrap;
+}
+.searchBtn:disabled { opacity: 0.6; }
+
+.resultsList { display: flex; flex-direction: column; gap: 8px; }
+.resultCard {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  gap: 12px;
+}
+.resultName { font-size: 13px; font-weight: 700; color: white; font-family: 'Exo 2', monospace; }
+
+.requestBtn {
+  padding: 8px 14px; border-radius: 10px; border: none;
+  background: rgba(56,189,248,0.15); color: #38bdf8;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  font-family: 'Share Tech Mono', monospace; white-space: nowrap;
+  transition: background 0.15s;
+}
+.requestBtn:hover { background: rgba(56,189,248,0.25); }
+.requestBtn:disabled { opacity: 0.6; }
+
+.approvedBadge {
+  font-size: 12px; font-weight: 700; color: #34d399;
+  font-family: 'Share Tech Mono', monospace;
+  background: rgba(52,211,153,0.12); padding: 6px 12px; border-radius: 10px;
+}
+.pendingBadge {
+  font-size: 12px; font-weight: 700; color: #fbbf24;
+  font-family: 'Share Tech Mono', monospace;
+  background: rgba(251,191,36,0.12); padding: 6px 12px; border-radius: 10px;
+}
+
+.emptyHint {
+  font-size: 13px; color: rgba(255,255,255,0.35);
+  font-family: 'Share Tech Mono', monospace; line-height: 1.6;
+  text-align: center; padding: 20px 0;
+}
+
+.footer { padding: 0 14px 24px; max-width: 600px; margin: 0 auto; width: 100%; }
+.signOutBtn {
+  width: 100%; padding: 14px; border-radius: 14px;
+  background: #e74c3c; border: none; color: #0a0a0a;
+  font-size: 12px; font-weight: 800; cursor: pointer;
+  font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
+}
+.signOutBtn:active { background: #c0392b; }

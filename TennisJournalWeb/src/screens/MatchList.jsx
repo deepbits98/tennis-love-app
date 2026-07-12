@@ -19,27 +19,28 @@ function closestMoodEmoji(score) {
   return MOOD_EMOJI[closest];
 }
 
-export default function MatchList({ user, onNavigate, lang, setLang }) {
+export default function MatchList({ user, onNavigate, lang, setLang, viewUserId, viewUserName, readOnly }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const queryId = viewUserId || user.id;
 
   useEffect(() => {
     supabase.from('matches')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_id', queryId)
       .order('match_date', { ascending: false })
       .then(({ data }) => { setMatches(data || []); setLoading(false); });
-  }, []);
+  }, [queryId]);
 
   return (
     <div className={styles.page}>
       <div className={styles.header}>
         <div className={styles.headerInner}>
           <button className={styles.backBtn} onClick={() => onNavigate('home')}>← Back</button>
-          <h1 className={styles.title}>Past Matches</h1>
+          <h1 className={styles.title}>{readOnly ? `${viewUserName || 'Player'}'s Matches` : 'Past Matches'}</h1>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <LangBtn lang={lang} setLang={setLang} />
-            <button className={styles.newBtn} onClick={() => onNavigate('journal')}>+ New</button>
+            {!readOnly && <LangBtn lang={lang} setLang={setLang} />}
+            {!readOnly && <button className={styles.newBtn} onClick={() => onNavigate('journal')}>+ New</button>}
           </div>
         </div>
       </div>
@@ -58,7 +59,7 @@ export default function MatchList({ user, onNavigate, lang, setLang }) {
         )}
 
         {matches.map(m => (
-          <div key={m.id} className={styles.card} onClick={() => onNavigate('journal', m)} style={{ cursor: 'pointer' }}>
+          <div key={m.id} className={styles.card} onClick={readOnly ? undefined : () => onNavigate('journal', m)} style={{ cursor: readOnly ? 'default' : 'pointer' }}>
             <div className={styles.cardTop}>
               <div className={styles.dateWrap}>
                 <span className={styles.date}>{formatDate(m.match_date)}</span>
