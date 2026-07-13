@@ -83,9 +83,21 @@
 .instrTitle { font-size: 13px; font-weight: 700; color: white; font-family: 'Exo 2', monospace; margin-bottom: 3px; }
 .instrText { font-size: 12px; color: rgba(255,255,255,0.45); font-family: 'Share Tech Mono', monospace; line-height: 1.5; }
 
-.termsRow { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
-.checkbox { margin-top: 3px; accent-color: #38bdf8; flex-shrink: 0; width: 16px; height: 16px; }
-.termsText { font-size: 12px; color: rgba(255,255,255,0.45); font-family: 'Share Tech Mono', monospace; line-height: 1.5; }
+.termsRow {
+  display: flex; gap: 14px; align-items: flex-start;
+  cursor: pointer; padding: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+}
+.checkbox {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  accent-color: #38bdf8;
+  cursor: pointer;
+  margin-top: 1px;
+}
+.termsText { font-size: 13px; color: rgba(255,255,255,0.55); font-family: 'Share Tech Mono', monospace; line-height: 1.6; }
 .termsLink { color: #38bdf8; }
 
 .error { font-size: 12px; color: #f87171; font-family: 'Share Tech Mono', monospace; margin: 0; }
