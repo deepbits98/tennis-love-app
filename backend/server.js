@@ -8,7 +8,6 @@ const { transcribeAudio } = require('./transcription');
 const { extractFields } = require('./extraction');
 const { analyzeMatch } = require('./analysis');
 const { createClient } = require('@supabase/supabase-js');
-const { Resend } = require('resend');
 
 const app = express();
 app.use(cors());
@@ -145,87 +144,6 @@ app.post('/manage-audio', async (req, res) => {
   }
 
   res.json({ kept: Math.min(files.length, 10), deleted: Math.max(0, files.length - 10) });
-});
-
-// POST /send-parent-request — parent requests access to child's data
-app.post('/send-parent-request', async (req, res) => {
-  const { parentId, parentName, playerId, playerName, playerEmail } = req.body;
-  if (!parentId || !playerId || !playerEmail) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  // Check if already linked
-  const { data: existing } = await supabase
-    .from('parent_access_requests')
-    .select('status')
-    .eq('parent_id', parentId)
-    .eq('player_id', playerId)
-    .single();
-
-  if (existing?.status === 'approved') return res.json({ alreadyApproved: true });
-  if (existing?.status === 'pending') return res.json({ pending: true });
-
-  // Create request
-  const { data: request, error: insertErr } = await supabase
-    .from('parent_access_requests')
-    .insert({ parent_id: parentId, player_id: playerId })
-    .select()
-    .single();
-
-  if (insertErr) return res.status(500).json({ error: insertErr.message });
-
-  // Send approval email via Resend
-  try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const approveUrl = `https://tennis-love-app-production.up.railway.app/approve-access?token=${request.token}`;
-    await resend.emails.send({
-      from: 'Tennis LOVE <onboarding@resend.dev>',
-      to: playerEmail,
-      subject: `${parentName} wants to view your Tennis LOVE match data`,
-      html: `
-        <div style="font-family:sans-serif;max-width:480px;margin:auto;padding:32px;background:#07080a;color:white;border-radius:16px;">
-          <h2 style="color:#38bdf8;margin-top:0;">🎾 Tennis LOVE</h2>
-          <p style="color:#e2e8f0;line-height:1.6;"><strong>${parentName}</strong> has requested access to view your match data on Tennis LOVE.</p>
-          <p style="color:#94a3b8;font-size:14px;line-height:1.6;">If you know this person and want to share your data, click Approve below. If not, simply ignore this email.</p>
-          <a href="${approveUrl}" style="display:inline-block;margin-top:16px;background:#2563eb;color:white;padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;">✅ Approve Access</a>
-          <p style="color:#475569;font-size:12px;margin-top:24px;">Tennis LOVE — Built for Indian tennis champions 🇮🇳</p>
-        </div>
-      `,
-    });
-  } catch (emailErr) {
-    console.error('Email send failed:', emailErr.message);
-  }
-
-  res.json({ success: true });
-});
-
-// GET /approve-access?token=xxx — player approves parent's request from email link
-app.get('/approve-access', async (req, res) => {
-  const { token } = req.query;
-  if (!token) return res.status(400).send('<h2>Invalid link.</h2>');
-
-  const { error } = await supabase
-    .from('parent_access_requests')
-    .update({ status: 'approved' })
-    .eq('token', token)
-    .eq('status', 'pending');
-
-  if (error) {
-    return res.send(`
-      <html><body style="font-family:sans-serif;text-align:center;padding:60px;background:#07080a;color:white;">
-        <h2>⚠️ Invalid or already used link.</h2>
-        <p style="color:#94a3b8;">This approval link may have already been used.</p>
-      </body></html>
-    `);
-  }
-
-  res.send(`
-    <html><body style="font-family:sans-serif;text-align:center;padding:60px;background:#07080a;color:white;">
-      <h2 style="color:#34d399;">✅ Access Approved!</h2>
-      <p style="color:#e2e8f0;">Your parent can now view your Tennis LOVE match data.</p>
-      <p style="color:#38bdf8;margin-top:24px;">You can close this page.</p>
-    </body></html>
-  `);
 });
 
 // Catch any unhandled Express errors
