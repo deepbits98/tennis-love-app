@@ -24,14 +24,14 @@ export default function Home({ user, lang, setLang, onNavigate }) {
       {showHelp && <HelpGuide onClose={closeHelp} />}
       <div className={styles.header}>
         <div className={styles.headerInner}>
-          <div className={styles.topBar}>
-            <LangBtn lang={lang} setLang={setLang} />
-            <button className={styles.helpBtn} onClick={() => setShowHelp(true)}>Help ?</button>
-          </div>
           <div>
             <p className={styles.date}>{today}</p>
             <h1 className={styles.welcome}>Hey, {name} 👋</h1>
             <p className={styles.sub}>{tr.homeSubtitle}</p>
+          </div>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button className={styles.helpBtn} onClick={() => setShowHelp(true)}>Help ?</button>
+            <LangBtn lang={lang} setLang={setLang} />
           </div>
         </div>
       </div>
