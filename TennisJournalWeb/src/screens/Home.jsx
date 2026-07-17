@@ -21,7 +21,7 @@ export default function Home({ user, lang, setLang, onNavigate }) {
 
   return (
     <div className={styles.page}>
-      {showHelp && <HelpGuide onClose={closeHelp} />}
+      {showHelp && <HelpGuide onClose={closeHelp} lang={lang} />}
       <div className={styles.header}>
         <div className={styles.headerInner}>
           <div>
@@ -30,7 +30,7 @@ export default function Home({ user, lang, setLang, onNavigate }) {
             <p className={styles.sub}>{tr.homeSubtitle}</p>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button className={styles.helpBtn} onClick={() => setShowHelp(true)}>Help ?</button>
+            <button className={styles.helpBtn} onClick={() => setShowHelp(true)}>{lang === 'hi' ? 'सहायता ?' : 'Help ?'}</button>
             <LangBtn lang={lang} setLang={setLang} />
           </div>
         </div>
