@@ -28,8 +28,7 @@
   border: 1px solid rgba(56,189,248,0.3);
   background: rgba(56,189,248,0.08);
   color: #38bdf8; font-size: 12px; font-weight: 700; cursor: pointer;
-  margin-top: 4px; font-family: 'Share Tech Mono', monospace;
-  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace; white-space: nowrap;
 }
 
 .cards {
