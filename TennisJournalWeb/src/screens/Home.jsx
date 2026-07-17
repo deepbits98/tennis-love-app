@@ -58,8 +58,8 @@ export default function Home({ user, lang, setLang, onNavigate }) {
         <button className={styles.card} onClick={() => onNavigate('schedule')}>
           <span className={styles.cardIcon}>📅</span>
           <div className={styles.cardText}>
-            <span className={styles.cardTitle}>Tournament Calendar</span>
-            <span className={styles.cardSub}>Tournaments, exams & more</span>
+            <span className={styles.cardTitle}>{tr.tournamentCalendar}</span>
+            <span className={styles.cardSub}>{tr.tournamentCalendarSub}</span>
           </div>
           <span className={styles.arrow}>→</span>
         </button>
