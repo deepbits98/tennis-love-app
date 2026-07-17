@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styles from './Home.module.css';
 import LangBtn from '../components/LangBtn';
 import { t } from '../i18n';
+import HelpGuide from './HelpGuide';
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function formatDate(iso) {
@@ -14,8 +16,12 @@ export default function Home({ user, lang, setLang, onNavigate }) {
   const name = user.user_metadata?.full_name?.split(' ')[0] || 'Player';
   const today = formatDate(new Date().toISOString().split('T')[0]);
 
+  const [showHelp, setShowHelp] = useState(() => localStorage.getItem('helpGuideShown') !== '1');
+  const closeHelp = () => { localStorage.setItem('helpGuideShown', '1'); setShowHelp(false); };
+
   return (
     <div className={styles.page}>
+      {showHelp && <HelpGuide onClose={closeHelp} />}
       <div className={styles.header}>
         <div className={styles.headerInner}>
           <div>
@@ -23,7 +29,10 @@ export default function Home({ user, lang, setLang, onNavigate }) {
             <h1 className={styles.welcome}>Hey, {name} 👋</h1>
             <p className={styles.sub}>{tr.homeSubtitle}</p>
           </div>
-          <LangBtn lang={lang} setLang={setLang} />
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button className={styles.helpBtn} onClick={() => setShowHelp(true)}>Help ?</button>
+            <LangBtn lang={lang} setLang={setLang} />
+          </div>
         </div>
       </div>
 
