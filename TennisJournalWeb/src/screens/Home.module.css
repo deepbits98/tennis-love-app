@@ -20,7 +20,12 @@
   border: 1px solid rgba(204,255,0,0.3);
   background: rgba(204,255,0,0.08);
   color: #ccff00; font-size: 12px; font-weight: 700; cursor: pointer;
-  margin-top: 4px; font-family: 'Share Tech Mono', monospace;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.topBar {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; margin-bottom: 14px;
 }
 
 .helpBtn {
@@ -28,8 +33,7 @@
   border: 1px solid rgba(56,189,248,0.3);
   background: rgba(56,189,248,0.08);
   color: #38bdf8; font-size: 12px; font-weight: 700; cursor: pointer;
-  margin-top: 4px; font-family: 'Share Tech Mono', monospace;
-  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace; white-space: nowrap;
 }
 
 .cards {
